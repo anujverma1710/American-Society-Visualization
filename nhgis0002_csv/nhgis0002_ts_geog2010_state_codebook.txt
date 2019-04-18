@@ -1,0 +1,827 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0002_ts_geog2010_state'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Geographic Integration Methods
+    - Source Data
+    - Citation and Use
+ 
+Detailed notes on time series design and comparability are available at: 
+    https://www.nhgis.org/sites/www.nhgis.org/files/nhgis_time_series_tables.pdf 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Time series layout:     Time varies by column
+Geographic level:       State
+Geographic integration: Standardized to 2010
+Data measurement years: 1990, 2000, 2010
+ 
+Tables:
+ 
+1. Persons by Age [22]
+   Years: 1990, 2000, 2010
+   Code:  CW3
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+        GISJOIN:     GIS Join Match Code
+        GEOGYEAR:    Geography Year
+        STATE:       State Name
+        STATEA:      State Code
+ 
+Table 1: (CW3) Persons by Age [22]
+    Time series AA: Persons: Under 5 years
+        CW3AA1990:   1990: Persons: Under 5 years
+        CW3AA1990L:  Lower bound: 1990: Persons: Under 5 years
+        CW3AA1990U:  Upper bound: 1990: Persons: Under 5 years
+        CW3AA2000:   2000: Persons: Under 5 years
+        CW3AA2000L:  Lower bound: 2000: Persons: Under 5 years
+        CW3AA2000U:  Upper bound: 2000: Persons: Under 5 years
+        CW3AA2010:   2010: Persons: Under 5 years
+    Time series AB: Persons: 5 to 9 years
+        CW3AB1990:   1990: Persons: 5 to 9 years
+        CW3AB1990L:  Lower bound: 1990: Persons: 5 to 9 years
+        CW3AB1990U:  Upper bound: 1990: Persons: 5 to 9 years
+        CW3AB2000:   2000: Persons: 5 to 9 years
+        CW3AB2000L:  Lower bound: 2000: Persons: 5 to 9 years
+        CW3AB2000U:  Upper bound: 2000: Persons: 5 to 9 years
+        CW3AB2010:   2010: Persons: 5 to 9 years
+    Time series AC: Persons: 10 to 14 years
+        CW3AC1990:   1990: Persons: 10 to 14 years
+        CW3AC1990L:  Lower bound: 1990: Persons: 10 to 14 years
+        CW3AC1990U:  Upper bound: 1990: Persons: 10 to 14 years
+        CW3AC2000:   2000: Persons: 10 to 14 years
+        CW3AC2000L:  Lower bound: 2000: Persons: 10 to 14 years
+        CW3AC2000U:  Upper bound: 2000: Persons: 10 to 14 years
+        CW3AC2010:   2010: Persons: 10 to 14 years
+    Time series AD: Persons: 15 to 17 years
+        CW3AD1990:   1990: Persons: 15 to 17 years
+        CW3AD1990L:  Lower bound: 1990: Persons: 15 to 17 years
+        CW3AD1990U:  Upper bound: 1990: Persons: 15 to 17 years
+        CW3AD2000:   2000: Persons: 15 to 17 years
+        CW3AD2000L:  Lower bound: 2000: Persons: 15 to 17 years
+        CW3AD2000U:  Upper bound: 2000: Persons: 15 to 17 years
+        CW3AD2010:   2010: Persons: 15 to 17 years
+    Time series AE: Persons: 18 and 19 years
+        CW3AE1990:   1990: Persons: 18 and 19 years
+        CW3AE1990L:  Lower bound: 1990: Persons: 18 and 19 years
+        CW3AE1990U:  Upper bound: 1990: Persons: 18 and 19 years
+        CW3AE2000:   2000: Persons: 18 and 19 years
+        CW3AE2000L:  Lower bound: 2000: Persons: 18 and 19 years
+        CW3AE2000U:  Upper bound: 2000: Persons: 18 and 19 years
+        CW3AE2010:   2010: Persons: 18 and 19 years
+    Time series AF: Persons: 20 years
+        CW3AF1990:   1990: Persons: 20 years
+        CW3AF1990L:  Lower bound: 1990: Persons: 20 years
+        CW3AF1990U:  Upper bound: 1990: Persons: 20 years
+        CW3AF2000:   2000: Persons: 20 years
+        CW3AF2000L:  Lower bound: 2000: Persons: 20 years
+        CW3AF2000U:  Upper bound: 2000: Persons: 20 years
+        CW3AF2010:   2010: Persons: 20 years
+    Time series AG: Persons: 21 years
+        CW3AG1990:   1990: Persons: 21 years
+        CW3AG1990L:  Lower bound: 1990: Persons: 21 years
+        CW3AG1990U:  Upper bound: 1990: Persons: 21 years
+        CW3AG2000:   2000: Persons: 21 years
+        CW3AG2000L:  Lower bound: 2000: Persons: 21 years
+        CW3AG2000U:  Upper bound: 2000: Persons: 21 years
+        CW3AG2010:   2010: Persons: 21 years
+    Time series AH: Persons: 22 to 24 years
+        CW3AH1990:   1990: Persons: 22 to 24 years
+        CW3AH1990L:  Lower bound: 1990: Persons: 22 to 24 years
+        CW3AH1990U:  Upper bound: 1990: Persons: 22 to 24 years
+        CW3AH2000:   2000: Persons: 22 to 24 years
+        CW3AH2000L:  Lower bound: 2000: Persons: 22 to 24 years
+        CW3AH2000U:  Upper bound: 2000: Persons: 22 to 24 years
+        CW3AH2010:   2010: Persons: 22 to 24 years
+    Time series AI: Persons: 25 to 29 years
+        CW3AI1990:   1990: Persons: 25 to 29 years
+        CW3AI1990L:  Lower bound: 1990: Persons: 25 to 29 years
+        CW3AI1990U:  Upper bound: 1990: Persons: 25 to 29 years
+        CW3AI2000:   2000: Persons: 25 to 29 years
+        CW3AI2000L:  Lower bound: 2000: Persons: 25 to 29 years
+        CW3AI2000U:  Upper bound: 2000: Persons: 25 to 29 years
+        CW3AI2010:   2010: Persons: 25 to 29 years
+    Time series AJ: Persons: 30 to 34 years
+        CW3AJ1990:   1990: Persons: 30 to 34 years
+        CW3AJ1990L:  Lower bound: 1990: Persons: 30 to 34 years
+        CW3AJ1990U:  Upper bound: 1990: Persons: 30 to 34 years
+        CW3AJ2000:   2000: Persons: 30 to 34 years
+        CW3AJ2000L:  Lower bound: 2000: Persons: 30 to 34 years
+        CW3AJ2000U:  Upper bound: 2000: Persons: 30 to 34 years
+        CW3AJ2010:   2010: Persons: 30 to 34 years
+    Time series AK: Persons: 35 to 39 years
+        CW3AK1990:   1990: Persons: 35 to 39 years
+        CW3AK1990L:  Lower bound: 1990: Persons: 35 to 39 years
+        CW3AK1990U:  Upper bound: 1990: Persons: 35 to 39 years
+        CW3AK2000:   2000: Persons: 35 to 39 years
+        CW3AK2000L:  Lower bound: 2000: Persons: 35 to 39 years
+        CW3AK2000U:  Upper bound: 2000: Persons: 35 to 39 years
+        CW3AK2010:   2010: Persons: 35 to 39 years
+    Time series AL: Persons: 40 to 44 years
+        CW3AL1990:   1990: Persons: 40 to 44 years
+        CW3AL1990L:  Lower bound: 1990: Persons: 40 to 44 years
+        CW3AL1990U:  Upper bound: 1990: Persons: 40 to 44 years
+        CW3AL2000:   2000: Persons: 40 to 44 years
+        CW3AL2000L:  Lower bound: 2000: Persons: 40 to 44 years
+        CW3AL2000U:  Upper bound: 2000: Persons: 40 to 44 years
+        CW3AL2010:   2010: Persons: 40 to 44 years
+    Time series AM: Persons: 45 to 49 years
+        CW3AM1990:   1990: Persons: 45 to 49 years
+        CW3AM1990L:  Lower bound: 1990: Persons: 45 to 49 years
+        CW3AM1990U:  Upper bound: 1990: Persons: 45 to 49 years
+        CW3AM2000:   2000: Persons: 45 to 49 years
+        CW3AM2000L:  Lower bound: 2000: Persons: 45 to 49 years
+        CW3AM2000U:  Upper bound: 2000: Persons: 45 to 49 years
+        CW3AM2010:   2010: Persons: 45 to 49 years
+    Time series AN: Persons: 50 to 54 years
+        CW3AN1990:   1990: Persons: 50 to 54 years
+        CW3AN1990L:  Lower bound: 1990: Persons: 50 to 54 years
+        CW3AN1990U:  Upper bound: 1990: Persons: 50 to 54 years
+        CW3AN2000:   2000: Persons: 50 to 54 years
+        CW3AN2000L:  Lower bound: 2000: Persons: 50 to 54 years
+        CW3AN2000U:  Upper bound: 2000: Persons: 50 to 54 years
+        CW3AN2010:   2010: Persons: 50 to 54 years
+    Time series AO: Persons: 55 to 59 years
+        CW3AO1990:   1990: Persons: 55 to 59 years
+        CW3AO1990L:  Lower bound: 1990: Persons: 55 to 59 years
+        CW3AO1990U:  Upper bound: 1990: Persons: 55 to 59 years
+        CW3AO2000:   2000: Persons: 55 to 59 years
+        CW3AO2000L:  Lower bound: 2000: Persons: 55 to 59 years
+        CW3AO2000U:  Upper bound: 2000: Persons: 55 to 59 years
+        CW3AO2010:   2010: Persons: 55 to 59 years
+    Time series AP: Persons: 60 and 61 years
+        CW3AP1990:   1990: Persons: 60 and 61 years
+        CW3AP1990L:  Lower bound: 1990: Persons: 60 and 61 years
+        CW3AP1990U:  Upper bound: 1990: Persons: 60 and 61 years
+        CW3AP2000:   2000: Persons: 60 and 61 years
+        CW3AP2000L:  Lower bound: 2000: Persons: 60 and 61 years
+        CW3AP2000U:  Upper bound: 2000: Persons: 60 and 61 years
+        CW3AP2010:   2010: Persons: 60 and 61 years
+    Time series AQ: Persons: 62 to 64 years
+        CW3AQ1990:   1990: Persons: 62 to 64 years
+        CW3AQ1990L:  Lower bound: 1990: Persons: 62 to 64 years
+        CW3AQ1990U:  Upper bound: 1990: Persons: 62 to 64 years
+        CW3AQ2000:   2000: Persons: 62 to 64 years
+        CW3AQ2000L:  Lower bound: 2000: Persons: 62 to 64 years
+        CW3AQ2000U:  Upper bound: 2000: Persons: 62 to 64 years
+        CW3AQ2010:   2010: Persons: 62 to 64 years
+    Time series AR: Persons: 65 to 69 years
+        CW3AR1990:   1990: Persons: 65 to 69 years
+        CW3AR1990L:  Lower bound: 1990: Persons: 65 to 69 years
+        CW3AR1990U:  Upper bound: 1990: Persons: 65 to 69 years
+        CW3AR2000:   2000: Persons: 65 to 69 years
+        CW3AR2000L:  Lower bound: 2000: Persons: 65 to 69 years
+        CW3AR2000U:  Upper bound: 2000: Persons: 65 to 69 years
+        CW3AR2010:   2010: Persons: 65 to 69 years
+    Time series AS: Persons: 70 to 74 years
+        CW3AS1990:   1990: Persons: 70 to 74 years
+        CW3AS1990L:  Lower bound: 1990: Persons: 70 to 74 years
+        CW3AS1990U:  Upper bound: 1990: Persons: 70 to 74 years
+        CW3AS2000:   2000: Persons: 70 to 74 years
+        CW3AS2000L:  Lower bound: 2000: Persons: 70 to 74 years
+        CW3AS2000U:  Upper bound: 2000: Persons: 70 to 74 years
+        CW3AS2010:   2010: Persons: 70 to 74 years
+    Time series AT: Persons: 75 to 79 years
+        CW3AT1990:   1990: Persons: 75 to 79 years
+        CW3AT1990L:  Lower bound: 1990: Persons: 75 to 79 years
+        CW3AT1990U:  Upper bound: 1990: Persons: 75 to 79 years
+        CW3AT2000:   2000: Persons: 75 to 79 years
+        CW3AT2000L:  Lower bound: 2000: Persons: 75 to 79 years
+        CW3AT2000U:  Upper bound: 2000: Persons: 75 to 79 years
+        CW3AT2010:   2010: Persons: 75 to 79 years
+    Time series AU: Persons: 80 to 84 years
+        CW3AU1990:   1990: Persons: 80 to 84 years
+        CW3AU1990L:  Lower bound: 1990: Persons: 80 to 84 years
+        CW3AU1990U:  Upper bound: 1990: Persons: 80 to 84 years
+        CW3AU2000:   2000: Persons: 80 to 84 years
+        CW3AU2000L:  Lower bound: 2000: Persons: 80 to 84 years
+        CW3AU2000U:  Upper bound: 2000: Persons: 80 to 84 years
+        CW3AU2010:   2010: Persons: 80 to 84 years
+    Time series AV: Persons: 85 years and over
+        CW3AV1990:   1990: Persons: 85 years and over
+        CW3AV1990L:  Lower bound: 1990: Persons: 85 years and over
+        CW3AV1990U:  Upper bound: 1990: Persons: 85 years and over
+        CW3AV2000:   2000: Persons: 85 years and over
+        CW3AV2000L:  Lower bound: 2000: Persons: 85 years and over
+        CW3AV2000U:  Upper bound: 2000: Persons: 85 years and over
+        CW3AV2010:   2010: Persons: 85 years and over
+ 
+--------------------------------------------------------------------------------
+Geographic Integration Methods
+--------------------------------------------------------------------------------
+ 
+1990 Block Data Standardized to 2010 Geography:
+
+    NHGIS standardizes the 1990 data in these time series tables to 2010 census
+    geography in two steps, first allocating census counts from 1990 census
+    blocks to 2010 census blocks and then summing the reallocated 1990 counts
+    for all 2010 blocks that lie within each target 2010 unit. In cases where a
+    1990 block may intersect multiple 2010 units, NHGIS applies interpolation to
+    estimate how 1990 block characteristics are distributed among the
+    intersecting 2010 blocks, primarily using the population and housing
+    densities of 2000 and 2010 blocks to model the distribution of 1990
+    characteristics within 1990 blocks.
+    
+    For details on the interpolation model, see:
+    https://www.nhgis.org/documentation/time-series/1990-blocks-to-2010-geog
+
+2000 Block Data Standardized to 2010 Geography:
+
+    NHGIS standardizes the 2000 data in these time series tables to 2010 census
+    geography in two steps, first allocating census counts from 2000 census
+    blocks to 2010 census blocks and then summing the reallocated 2000 counts
+    for all 2010 blocks that lie within each target 2010 unit. Where a 2000
+    block intersects multiple 2010 blocks, NHGIS applies areal interpolation to
+    estimate how the 2000 block characteristics are distributed among the
+    intersecting 2010 blocks.
+    
+    In addition to the 2000 block data drawn from 2000 Census Summary File 1
+    (NHGIS dataset 2000_SF1b), NHGIS uses information from three ancillary
+    sources to refine the interpolation model:
+    
+    * 2010 census block population and housing unit counts from 2010 Census
+    Summary File 1 (NHGIS dataset 2010_SF1a)
+    
+    * Locations of residential roads from the U.S. Census Bureau's 2010
+    TIGER/Line Shapefiles
+    
+    * Extents of developed land, which we define as 30-meter square cells in the
+    2001 National Land Cover Database (NLCD 2001) (2011 Edition) with at least
+    5% of their area covered by impervious surface.
+    
+    For details on the interpolation model, see:
+    https://www.nhgis.org/documentation/time-series/2000-blocks-to-2010-geog
+
+2010 Standardized Data:
+
+    For time series tables that are standardized to 2010 census geography, NHGIS
+    draws the 2010 data directly from 2010 Census Summary Files without any
+    estimation. The only adjustment NHGIS may make to the 2010 source data is,
+    for some time series, to sum source counts together to compute larger
+    subtotals.
+
+Complete documentation on time series integration methods is available at:
+    https://www.nhgis.org/documentation/time-series
+ 
+--------------------------------------------------------------------------------
+Source Data
+--------------------------------------------------------------------------------
+ 
+Additional documentation on NHGIS data sources is available at:
+    https://www.nhgis.org/documentation/tabular-data
+
+Table 1: (CW3) Persons by Age [22]
+ 
+    Time series AA: Persons: Under 5 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3001] Under 1 year
+                        Variable: [ET3002] 1 and 2 years
+                        Variable: [ET3003] 3 and 4 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM001] Male >> Under 5 years
+                        Variable: [FYM024] Female >> Under 5 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76003] Male: Under 5 years
+                        Variable: [H76027] Female: Under 5 years
+ 
+    Time series AB: Persons: 5 to 9 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3004] 5 years
+                        Variable: [ET3005] 6 years
+                        Variable: [ET3006] 7 to 9 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM002] Male >> 5 to 9 years
+                        Variable: [FYM025] Female >> 5 to 9 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76004] Male: 5 to 9 years
+                        Variable: [H76028] Female: 5 to 9 years
+ 
+    Time series AC: Persons: 10 to 14 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3007] 10 and 11 years
+                        Variable: [ET3008] 12 and 13 years
+                        Variable: [ET3009] 14 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM003] Male >> 10 to 14 years
+                        Variable: [FYM026] Female >> 10 to 14 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76005] Male: 10 to 14 years
+                        Variable: [H76029] Female: 10 to 14 years
+ 
+    Time series AD: Persons: 15 to 17 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3010] 15 years
+                        Variable: [ET3011] 16 years
+                        Variable: [ET3012] 17 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM004] Male >> 15 to 17 years
+                        Variable: [FYM027] Female >> 15 to 17 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76006] Male: 15 to 17 years
+                        Variable: [H76030] Female: 15 to 17 years
+ 
+    Time series AE: Persons: 18 and 19 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3013] 18 years
+                        Variable: [ET3014] 19 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM005] Male >> 18 and 19 years
+                        Variable: [FYM028] Female >> 18 and 19 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76007] Male: 18 and 19 years
+                        Variable: [H76031] Female: 18 and 19 years
+ 
+    Time series AF: Persons: 20 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3015] 20 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM006] Male >> 20 years
+                        Variable: [FYM029] Female >> 20 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76008] Male: 20 years
+                        Variable: [H76032] Female: 20 years
+ 
+    Time series AG: Persons: 21 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3016] 21 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM007] Male >> 21 years
+                        Variable: [FYM030] Female >> 21 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76009] Male: 21 years
+                        Variable: [H76033] Female: 21 years
+ 
+    Time series AH: Persons: 22 to 24 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3017] 22 to 24 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM008] Male >> 22 to 24 years
+                        Variable: [FYM031] Female >> 22 to 24 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76010] Male: 22 to 24 years
+                        Variable: [H76034] Female: 22 to 24 years
+ 
+    Time series AI: Persons: 25 to 29 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3018] 25 to 29 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM009] Male >> 25 to 29 years
+                        Variable: [FYM032] Female >> 25 to 29 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76011] Male: 25 to 29 years
+                        Variable: [H76035] Female: 25 to 29 years
+ 
+    Time series AJ: Persons: 30 to 34 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3019] 30 to 34 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM010] Male >> 30 to 34 years
+                        Variable: [FYM033] Female >> 30 to 34 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76012] Male: 30 to 34 years
+                        Variable: [H76036] Female: 30 to 34 years
+ 
+    Time series AK: Persons: 35 to 39 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3020] 35 to 39 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM011] Male >> 35 to 39 years
+                        Variable: [FYM034] Female >> 35 to 39 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76013] Male: 35 to 39 years
+                        Variable: [H76037] Female: 35 to 39 years
+ 
+    Time series AL: Persons: 40 to 44 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3021] 40 to 44 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM012] Male >> 40 to 44 years
+                        Variable: [FYM035] Female >> 40 to 44 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76014] Male: 40 to 44 years
+                        Variable: [H76038] Female: 40 to 44 years
+ 
+    Time series AM: Persons: 45 to 49 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3022] 45 to 49 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM013] Male >> 45 to 49 years
+                        Variable: [FYM036] Female >> 45 to 49 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76015] Male: 45 to 49 years
+                        Variable: [H76039] Female: 45 to 49 years
+ 
+    Time series AN: Persons: 50 to 54 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3023] 50 to 54 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM014] Male >> 50 to 54 years
+                        Variable: [FYM037] Female >> 50 to 54 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76016] Male: 50 to 54 years
+                        Variable: [H76040] Female: 50 to 54 years
+ 
+    Time series AO: Persons: 55 to 59 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3024] 55 to 59 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM015] Male >> 55 to 59 years
+                        Variable: [FYM038] Female >> 55 to 59 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76017] Male: 55 to 59 years
+                        Variable: [H76041] Female: 55 to 59 years
+ 
+    Time series AP: Persons: 60 and 61 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3025] 60 and 61 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM016] Male >> 60 and 61 years
+                        Variable: [FYM039] Female >> 60 and 61 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76018] Male: 60 and 61 years
+                        Variable: [H76042] Female: 60 and 61 years
+ 
+    Time series AQ: Persons: 62 to 64 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3026] 62 to 64 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM017] Male >> 62 to 64 years
+                        Variable: [FYM040] Female >> 62 to 64 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76019] Male: 62 to 64 years
+                        Variable: [H76043] Female: 62 to 64 years
+ 
+    Time series AR: Persons: 65 to 69 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3027] 65 to 69 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM018] Male >> 65 and 66 years
+                        Variable: [FYM019] Male >> 67 to 69 years
+                        Variable: [FYM041] Female >> 65 and 66 years
+                        Variable: [FYM042] Female >> 67 to 69 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76020] Male: 65 and 66 years
+                        Variable: [H76021] Male: 67 to 69 years
+                        Variable: [H76044] Female: 65 and 66 years
+                        Variable: [H76045] Female: 67 to 69 years
+ 
+    Time series AS: Persons: 70 to 74 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3028] 70 to 74 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM020] Male >> 70 to 74 years
+                        Variable: [FYM043] Female >> 70 to 74 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76022] Male: 70 to 74 years
+                        Variable: [H76046] Female: 70 to 74 years
+ 
+    Time series AT: Persons: 75 to 79 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3029] 75 to 79 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM021] Male >> 75 to 79 years
+                        Variable: [FYM044] Female >> 75 to 79 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76023] Male: 75 to 79 years
+                        Variable: [H76047] Female: 75 to 79 years
+ 
+    Time series AU: Persons: 80 to 84 years
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3030] 80 to 84 years
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM022] Male >> 80 to 84 years
+                        Variable: [FYM045] Female >> 80 to 84 years
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76024] Male: 80 to 84 years
+                        Variable: [H76048] Female: 80 to 84 years
+ 
+    Time series AV: Persons: 85 years and over
+        Year: 1990
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 1990 Census: STF 1 - 100% Data
+                Source table: NP11. Age
+                    Universe: Persons
+                        Variable: [ET3031] 85 years and over
+        Year: 2000
+            Source geographic level: Block (by State--County--Tract)
+            Source dataset: 2000 Census: SF 1b - 100% Data [Blocks & Block Groups]
+                Source table: NP012B. Population by Sex by Age
+                    Universe: Persons
+                        Variable: [FYM023] Male >> 85 years and over
+                        Variable: [FYM046] Female >> 85 years and over
+        Year: 2010
+            Source geographic level: State
+            Source dataset: 2010 Census: SF 1a - P & H Tables [Blocks & Larger Areas]
+                Source table: P12. Sex by Age
+                    Universe: Total population
+                        Variable: [H76025] Male: 85 years and over
+                        Variable: [H76049] Female: 85 years and over
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite NHGIS appropriately.
+
+    * Publications and research reports employing NHGIS data (either tabular or GIS) 
+      should include the following citation:
+
+        Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. 
+        IPUMS National Historical Geographic Information System: Version 13.0 
+        [Database]. Minneapolis: University of Minnesota. 2018. 
+        http://doi.org/10.18128/D050.V13.0
+
+    * For policy briefs, online resources, or articles in the popular press, we 
+      recommend that you cite the use of NHGIS data as follows:
+
+        IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: nhgis@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS NHGIS
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
