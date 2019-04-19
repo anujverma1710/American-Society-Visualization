@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 
-<div class="chart-example" id="chart"><svg></svg></div>
 <div>
-	<button onclick="draw()">Draw</button>
+	<h1 id="Heading"></h1>
+	<button onclick="stop">Draw</button>
+	<button onclick="clearInterval(stop)">Stop</button>
 </div>
+<div class="chart-example" id="chart"><svg></svg></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.6.0/d3.min.js"></script>
 <script src="bubble_chart.js"></script>
 <script>
-year = 1780;
+
+var year = 1780;
+var stop = setInterval(draw,2000);
 function draw(){
 	
 	var svg = d3.select("svg");
@@ -15,7 +19,9 @@ function draw(){
 	
 	year = year + 10;
 	if (year > 2010)
-		year = 1790
+		year = 1790;
+
+	document.getElementById("Heading").innerHTML = "Population Bubble Chart for Year "+ year;
 
 	d3.csv('CleanData.csv', function(error, data) {
 		if (error) {
