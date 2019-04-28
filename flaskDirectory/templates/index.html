@@ -3,28 +3,65 @@
 <html>
 <head>
     <style>
-        path.state {
-            stroke: #666;
-            stroke-width: .5;
-        }
-
-        path.state:hover {
-            stroke: #000;
-        }
+        .state{
+		fill: none;
+		stroke: #a9a9a9;
+		stroke-width: 1;
+	}
+	.state:hover{
+		fill-opacity:0.5;
+	}
+	#statetooltip {
+		position: absolute ;
+		text-align: center ;
+		padding: 20px ;
+		margin: 10px ;
+		font: 12px sans-serif ;
+		background: lightsteelblue ;
+		border: 1px ;
+		border-radius: 2px ;
+		pointer-events: none ;
+	}
+	#statetooltip h4{
+		margin:0 ;
+		font-size:14px ;
+	}
+	#statetooltip{
+		background:rgba(0,0,0,0.9) ;
+		border:1px solid grey ;
+		border-radius:5px ;
+		font-size:12px ;
+		width:auto ;
+		padding:4px ;
+		color:white ;
+		opacity:0;
+	}
+	#statetooltip table{
+		table-layout:fixed ;
+	}
+	#statetooltip tr td{
+		padding:0 ;
+		margin:0 ;
+	}
+	#statetooltip tr td:nth-child(1){
+		width:50px ;
+	}
+	#statetooltip tr td:nth-child(2){
+		text-align:center;
+	}
     </style>
     <link href="./static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="./static/css/style.css" rel='stylesheet' type='text/css' />
     <link href="./static/css/font-awesome.css" rel="stylesheet">
     <link href="./static/css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" href="./static/css/graph.css">
-{#    <link rel="stylesheet" href="./static/css/clndr.css" type="text/css" />#}
     <link href="./static/css/owl.carousel.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="./static/css/style.css">
     <title>American Society Visualization</title>
 </head>
 <body>
+<div id="statetooltip"></div>
     <div id="wrapper">
+
         <nav class="navbar-default navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,16 +89,6 @@
                         </li>
 
                         <li>
-{#                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Menu Levels</span><span class="fa arrow"></span></a>#}
-{#                            <ul class="nav nav-second-level">#}
-{#                                <li><a href="graphs.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graphs</a></li>#}
-{##}
-{#                                <li><a href="maps.html" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Maps</a></li>#}
-{##}
-{#                            <li><a href="typography.html" class=" hvr-bounce-to-right"><i class="fa fa-file-text-o nav_icon"></i>Typography</a></li>#}
-{##}
-{#                           </ul>#}
-
                             <div class="hvr-bounce-to-right">
                                 <i class="fa fa-indent nav_icon"></i>
                                 <select id="plotter">
@@ -95,15 +122,12 @@
                 </div>
 
                 <div class="content-top">
-                    <div class="col-md-3 ">
+                    <div class="col-md-2 ">
                         <div class="content-top-1">
                             <div class="col-md-6 top-content">
                                 <h5>Year</h5>
                                 <label>2018</label>
                             </div>
-{#                            <div class="col-md-6 top-content1">#}
-{#                                <div id="demo-pie-1" class="pie-title-center" data-percent="25"> <span class="pie-value"></span> </div>#}
-{#                            </div>#}
                              <div class="clearfix"> </div>
                         </div>
                         <div class="content-top-1">
@@ -111,9 +135,6 @@
                             <h5>Total Population</h5>
                             <label>6295</label>
                         </div>
-{#                        <div class="col-md-6 top-content1">#}
-{#                            <div id="demo-pie-2" class="pie-title-center" data-percent="50"> <span class="pie-value"></span> </div>#}
-{#                        </div>#}
                          <div class="clearfix"> </div>
                         </div>
                         <div class="content-top-1">
@@ -121,29 +142,17 @@
                             <h5>Attribute Ratio</h5>
                             <label>3401</label>
                         </div>
-{#                        <div class="col-md-6 top-content1">#}
-{#                            <div id="demo-pie-3" class="pie-title-center" data-percent="75"> <span class="pie-value"></span> </div>#}
-{#                        </div>#}
                          <div class="clearfix"> </div>
                         </div>
                     </div>
 
-                    <div class="col-md-9 content-top-2">
+                    <div class="col-md-10 content-top-2">
                         <!---start-chart---->
                         <!----->
                         <div class="content-graph">
                             <div class="graph-container">
-                                <form>
-                                    <p>
-                                      <label>Scale by <select id="field"></select></label>
-                                      <label>in <select id="year"></select></label>
-                                      <span id="status"></span>
-                                    </p>
-                                </form>
-                                <div id="map-container">
-                                    <img id="placeholder" alt="placeholder image for old browsers" src="{{ url_for('static', filename='images/placeholder.png') }}">
-                                    <svg id="map"></svg>
-                                </div>
+                                <svg width="960" height="600" id="statesvg"></svg>
+
                                 <div id="graph-lines"> </div>
                                     <div id="graph-bars"> </div>
                             </div>
@@ -169,12 +178,6 @@
 </body>
 
 
-<script src="https://unpkg.com/topojson-client@3"></script>
-<script src="https://d3js.org/d3-geo.v1.min.js"></script>
-<script src="https://d3js.org/d3-array.v2.min.js"></script>
-<script src="https://d3js.org/d3-color.v1.min.js"></script>
-<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
@@ -183,26 +186,14 @@
 </script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"> </script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.slimscroll.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/screenfull.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/pie-chart.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/skycons.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.nicescroll.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/underscore-min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/clndr.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/moment-2.2.1.js') }}"></script>
-
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"> </script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.js') }}"></script>
-
-
+<script type="text/javascript" src="{{ url_for('static', filename='js/uStates.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 <script>
+
+
 $(document).ready(function () {
 var js = new american_society();
 });

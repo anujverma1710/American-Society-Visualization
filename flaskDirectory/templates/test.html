@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .state{
+		fill: none;
+		stroke: #a9a9a9;
+		stroke-width: 1;
+	}
+	.state:hover{
+		fill-opacity:0.5;
+	}
+	#statetooltip {
+		position: absolute;
+		text-align: center;
+		padding: 20px;
+		margin: 10px;
+		font: 12px sans-serif;
+		background: lightsteelblue;
+		border: 1px;
+		border-radius: 2px;
+		pointer-events: none;
+	}
+	#statetooltip h4{
+		margin:0;
+		font-size:14px;
+	}
+	#statetooltip{
+		background:rgba(0,0,0,0.9);
+		border:1px solid grey;
+		border-radius:5px;
+		font-size:12px;
+		width:auto;
+		padding:4px;
+		color:white;
+		opacity:0;
+	}
+	#statetooltip table{
+		table-layout:fixed;
+	}
+	#statetooltip tr td{
+		padding:0;
+		margin:0;
+	}
+	#statetooltip tr td:nth-child(1){
+		width:50px;
+	}
+	#statetooltip tr td:nth-child(2){
+		text-align:center;
+	}
+    </style>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<div id="statetooltip"></div>
+<div class="hvr-bounce-to-right">
+    <i class="fa fa-indent nav_icon"></i>
+    <select id="plotter">
+        <option value="sex">Sex</option>
+        <option value="race">Race</option>
+        <option value="age">Age</option>
+        <option value="rural">Rural/Urban</option>
+        <option value="native">Native/Foreigner</option>
+    </select>
+</div>
+<svg width="960" height="600" id="statesvg"></svg>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{request.script_root | tojson | safe}};
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/uStates.js') }}"></script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script>
+$(document).ready(function () {
+var js = new american_society();
+});
+</script>
+</html>

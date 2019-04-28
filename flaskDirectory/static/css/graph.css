@@ -21,15 +21,15 @@ http://vladimirkudinov.com
 }
 
 /* Gradinet and Rounded Corners */
-.graph-container, #tooltip, .graph-info a {
-	
-}
+/*.graph-container, #tooltip, .graph-info a {*/
+/*	*/
+/*}*/
 
 /*  Graph Container */
 .graph-container {
 	position: relative;
 	width: 100%;
-	height: 528px;
+	height: 800px;
 	padding: 20px;
 	
 }
@@ -48,13 +48,13 @@ http://vladimirkudinov.com
 }
 
 /* Text Styles */
-#tooltip, .graph-info a {
-	height: 25px;
-	
-	font-size: 12px;
-	line-height: 13px;
-	color: #999;
-}
+/*#tooltip, .graph-info a {*/
+/*	height: 25px;*/
+/*	*/
+/*	font-size: 12px;*/
+/*	line-height: 13px;*/
+/*	color: #999;*/
+/*}*/
 
 .tickLabel {
 	font-size: 1.2em;
@@ -63,12 +63,12 @@ http://vladimirkudinov.com
 }
 
 /* Tooltip */
-#tooltip {
-	position: absolute;
-	display: none;
-	padding: 5px 10px;
-	border: 1px solid #999;
-}
+/*#tooltip {*/
+/*	position: absolute;*/
+/*	display: none;*/
+/*	padding: 5px 10px;*/
+/*	border: 1px solid #999;*/
+/*}*/
 
 /* Links */
 .graph-info a {
