@@ -44,7 +44,7 @@ function tooltipHtml(n, d){	/* function to create html content string in tooltip
 			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
 			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
 			"</table>";
-}
+
 
 function draw_usa_map(){
     var sampleData ={};	/* Sample random data. */
@@ -58,7 +58,7 @@ function draw_usa_map(){
 				mid=Math.round(100*Math.random()),
 				high=Math.round(100*Math.random());
 			sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]),
-					avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100)};
+					avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100)};
 		});
 
 	/* draw states on id #statesvg */
