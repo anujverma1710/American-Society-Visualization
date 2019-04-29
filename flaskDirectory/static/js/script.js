@@ -34,7 +34,7 @@ $.getJSON($SCRIPT_ROOT + url, {
     }, function (result) {
         console.log(result)
 
-        draw_usa_map();
+        draw_usa_map(result);
     });
 }
 
@@ -42,11 +42,12 @@ function tooltipHtml(n, d){	/* function to create html content string in tooltip
 		return "<h4>"+n+"</h4><table>"+
 			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
 			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+            "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+            "<tr><td>Population</td><td>"+(d.Population)+"</td></tr>"+
 			"</table>";
 }
 
-function draw_usa_map(){
+function draw_usa_map(data){
     var sampleData ={};	/* Sample random data. */
 	["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
 	"ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
@@ -58,7 +59,8 @@ function draw_usa_map(){
 				mid=Math.round(100*Math.random()),
 				high=Math.round(100*Math.random());
 			sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]),
-					avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100)};
+                    avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#800026")(low/100),
+                Population:data[d].Total_Population_1980};
 		});
 
 	/* draw states on id #statesvg */
