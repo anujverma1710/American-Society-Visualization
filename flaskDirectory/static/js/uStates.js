@@ -54,11 +54,11 @@
 	];
 	var uStates={};
 
-	uStates.draw = function(id, data, toolTip){
+	uStates.draw = function(id, data, toolTip,attr){
 		function mouseOver(d){
 			d3.select("#statetooltip").transition().duration(200).style("opacity", .9);
 
-			d3.select("#statetooltip").html(toolTip(d.n, data[d.id]))
+			d3.select("#statetooltip").html(toolTip(d.n, data[d.id], attr))
 				.style("left", (d3.event.pageX) + "px")
 				.style("top", (d3.event.pageY - 28) + "px")
 				.style("z-index",1);
@@ -67,6 +67,11 @@
 		function mouseOut(){
 			d3.select("#statetooltip").transition().duration(500).style("opacity", 0);
 		}
+
+		d3.select(".graph-container").append("svg")
+		.attr("id", "statesvg")
+        .attr("width", 960)
+        .attr("height", 600)
 
 		d3.select(id).selectAll(".state")
 			.data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})

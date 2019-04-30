@@ -92,11 +92,12 @@
                             <div class="hvr-bounce-to-right">
                                 <i class="fa fa-indent nav_icon"></i>
                                 <select id="plotter">
-                                    <option value="sex">Sex</option>
-                                    <option value="race">Race</option>
-                                    <option value="age">Age</option>
-                                    <option value="rural">Rural/Urban</option>
-                                    <option value="native">Native/Foreigner</option>
+                                    <option value="Sex">Sex</option>
+                                    <option value="Race">Race</option>
+                                    <option value="Age">Age</option>
+                                    <option value="Urban">Rural/Urban</option>
+                                    <option value="Native">Native/Foreigner</option>
+                                    <option value ="Immigrant">Immigrant Origin</option>
                                 </select>
 
                             </div>
@@ -126,21 +127,21 @@
                         <div class="content-top-1">
                             <div class="col-md-6 top-content">
                                 <h5>Year</h5>
-                                <label>2018</label>
+                                <label><span id="yearSpan"></span></label>
                             </div>
                              <div class="clearfix"> </div>
                         </div>
                         <div class="content-top-1">
                         <div class="col-md-6 top-content">
                             <h5>Total Population</h5>
-                            <label>6295</label>
+                            <label><span id="popSpan"></span></label>
                         </div>
                          <div class="clearfix"> </div>
                         </div>
                         <div class="content-top-1">
                         <div class="col-md-6 top-content">
-                            <h5>Attribute Ratio</h5>
-                            <label>3401</label>
+                            <h5><span id="ratioSpanLabel"></span></h5>
+                            <label><span id="ratioSpan"></span></label>
                         </div>
                          <div class="clearfix"> </div>
                         </div>
@@ -151,10 +152,7 @@
                         <!----->
                         <div class="content-graph">
                             <div class="graph-container">
-                                <svg width="960" height="600" id="statesvg"></svg>
 
-                                <div id="graph-lines"> </div>
-                                    <div id="graph-bars"> </div>
                             </div>
 
                         </div>

@@ -1,6 +1,7 @@
 from flask import Flask,request,jsonify
 from flask import render_template
 import pandas as pd
+import helper
 
 app = Flask(__name__)
 
@@ -10,9 +11,14 @@ def index():
 
 @app.route("/display_plots")
 def display_plots():
-    attr = request.args.get('attr', 'sex', type=str)
-    data = pd.DataFrame()
-    return pd.io.json.dumps(data)
+    attr = request.args.get('attr', default='Sex', type=str)
+    # Temporary hack. Remove later
+    if attr != 'Immigrant':
+        attr += "_Ratio_Data.csv"
+
+    df = helper.getDataFrame(attr)
+    data = helper.getDataToSend(df)
+    return data
 
 
 if __name__ == "__main__":
