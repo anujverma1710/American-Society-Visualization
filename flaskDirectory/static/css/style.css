@@ -561,7 +561,8 @@ i.fa.fa-globe {
 /*--content--*/
 .content-top-1 {
     background-color: #fff;
-   	padding: 1.8em;
+   	padding: 1em;
+    padding-right: 5px;
    	margin-bottom: 1em; 
     border: 1px solid #ebeff6;
     border-radius: 4px;

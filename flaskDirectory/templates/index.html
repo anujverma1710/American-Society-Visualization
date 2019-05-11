@@ -3,14 +3,20 @@
 <html>
 <head>
     <style>
-        .state{
-		fill: none;
-		stroke: #a9a9a9;
-		stroke-width: 1;
-	}
-	.state:hover{
-		fill-opacity:0.5;
-	}
+    {#    .state{#}
+	{#	fill: none;#}
+	{#	stroke: #a9a9a9;#}
+	{#	stroke-width: 1;#}
+	{#}#}
+	{#.state:hover{#}
+	{#	fill-opacity:0.5;#}
+	{#}#}
+
+    .legends {
+	position:absolute;
+	{#left:20px;#}
+	{#top:30px;#}
+    }
 	#statetooltip {
 		position: absolute ;
 		text-align: center ;
@@ -50,6 +56,64 @@
 		text-align:center;
 	}
     </style>
+
+    <style>
+.g-hed {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size:22px;
+  margin: 3px 0;
+}
+.g-source-bold {
+  text-align: left;
+  font-size:10px;
+  font-weight: bold;
+}
+.g-source-reg {
+  text-align: left;
+  font-size:10px;
+}
+.g-source {
+  margin: 10px 0;
+}
+.g-intro {
+  font-size: 16px;
+  margin: 0px 0px 10px 0px;
+}
+.states {
+  fill: #d3d3d3;
+  stroke: #ffffff;
+  stroke-linejoin: round;
+}
+.q0-9 { fill: #d9e0f2; }
+.q1-9 { fill: #99b2dc; }
+.q2-9 { fill: #5e8dc9; }
+.q3-9 { fill: #2f5491; }
+.q4-9 { fill: #0e2344; }
+#q0-9 { background-color: #d9e0f2; }
+#q1-9 { background-color: #99b2dc; }
+#q2-9 { background-color: #5e8dc9; }
+#q3-9 { background-color: #2f5491; }
+#q4-9 { background-color: #0e2344; }
+{#div.sstooltip {#}
+{#  position: absolute;#}
+{#  left: 75px;#}
+{#  text-align: center;#}
+{#  height: 12px;#}
+{#  padding: 8px;#}
+{#  font-size: 13px;#}
+{#  font-family: 'Proxima-Nova', sans-serif;#}
+{#  background: #FFFFFF;#}
+{#  border: 1px solid #989898;#}
+{#  pointer-events: none;#}
+{#}#}
+.block {
+  width:18%;
+  height: 15px;
+  display:inline-block;
+}
+    </style>
     <link href="./static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="./static/css/style.css" rel='stylesheet' type='text/css' />
     <link href="./static/css/font-awesome.css" rel="stylesheet">
@@ -60,7 +124,7 @@
 </head>
 <body>
 <div id="statetooltip"></div>
-    <div id="wrapper">
+    <div id="">
 
         <nav class="navbar-default navbar-static-top" role="navigation">
             <div class="navbar-header">
@@ -75,21 +139,8 @@
             <div class=" border-bottom">
                 <div class="full-left">
                     <div class="clearfix"> </div>
-                </div>
-                <div class="drop-men" >
-		        </div>
-                <div class="clearfix">
-                </div>
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-
-                        <li>
-                            <a href="/" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
-                        </li>
-
-                        <li>
-                            <div class="hvr-bounce-to-right">
+                    <div class="navbar-default top-content" role="navigation">
+                        <div class="hvr-bounce-to-right">
                                 <i class="fa fa-indent nav_icon"></i>
                                 <select id="plotter">
                                     <option value="Sex">Sex</option>
@@ -100,30 +151,45 @@
                                     <option value ="Immigrant">Immigrant Origin</option>
                                 </select>
 
-                            </div>
-                        </li>
+                        </div>
+                        <div class="hvr-bounce-to-right">
+                            <i class="fa fa-indent nav_icon"></i>
+                            <select id="year">
+                                <option value="1970">1960 - 1970</option>
+                                <option value="1980">1970 - 1980</option>
+                                <option value="1990">1980 - 1990</option>
+                                <option value="2000">1990 - 2000</option>
+                                <option value="2010">2000 - 2010</option>
+                            </select>
 
-
-                    </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+                </div>
+                <div class="drop-men" >
+		        </div>
+                <div class="clearfix">
+                </div>
+
         </nav>
-        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div id="" class="">
 
             <div class="content-main">
 
-                <div class="banner">
+                    <div class="col-md-5 content-top-2">
+                        <!---start-chart---->
+                        <!----->
+                        <div class="content-graph">
+                            <div class="graph-container">
+                                <h5 class="g-hed"></h5>
+                                  <p class="g-intro"></p>
+                                  <div class="g-chart"></div>
+                            </div>
+                            <div class="g-source"><span class="g-source-bold"></span><span class="g-source-reg"></span></div>
+                        </div>
 
-                    <h2>
-                    <a href="/">Home</a>
-                    <i class="fa fa-angle-right"></i>
-                    <span>Dashboard</span>
-                    </h2>
-                </div>
-
-                <div class="content-top">
-                    <div class="col-md-2 ">
+                    </div>
+                    <div class="col-md-1" style="font-size: 70%">
                         <div class="content-top-1">
                             <div class="col-md-6 top-content">
                                 <h5>Year</h5>
@@ -147,15 +213,10 @@
                         </div>
                     </div>
 
-                    <div class="col-md-10 content-top-2">
-                        <!---start-chart---->
-                        <!----->
-                        <div class="content-graph">
-                            <div class="graph-container">
-
-                            </div>
-
-                        </div>
+                <div class="col-md-6 content-top-2">
+                    <div class="content-graph">
+                        <div class="graph-container"></div>
+                    </div>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -179,6 +240,10 @@
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
 <script type=text/javascript>
     $SCRIPT_ROOT = {{request.script_root | tojson | safe}};
 </script>
@@ -188,6 +253,9 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"> </script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/uStates.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/chloropeth.js') }}"></script>
+
+
 
 <script>
 
