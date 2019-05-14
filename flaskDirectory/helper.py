@@ -59,6 +59,10 @@ def getDataFrame(filename):
 	dataframe = pd.read_csv('Dataset/'+filename)
 	return dataframe
 
+def getDataFrameBasedOnYear(filename):
+	dataframe = pd.read_csv('NayawalaDataset/'+filename)
+	return dataframe
+
 def getDataToSend(dataframe):
 	states = dataframe['STATE'].tolist()
 	dataframe['ID'] = [stateCode[i] for i in states]

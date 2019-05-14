@@ -13,12 +13,12 @@ var margin = {top: 10, left: 10, bottom: 10, right: 10}
   , height = width * mapRatio;
 
 //Tells the nap what projection to use
-var projection = d3.geoAlbersUsa()
+var projection = d3.geo.albersUsa()
     .scale(width)
     .translate([width / 2, height / 2]);
 
 //Tells the map how to draw the paths from the projection
-var path = d3.geoPath()
+var path = d3.geo.path()
     .projection(projection);
 
 //Appened svg to page
@@ -64,7 +64,7 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
     var extent = d3.extent(domain)
     console.log("extent", extent)
 
-	var ramp = d3.scaleLinear().domain([extent[0],extent[1]]).range([lowColor,highColor])
+	var ramp = d3.scale.linear().domain([extent[0],extent[1]]).range([lowColor,highColor])
     var w = 140, h = 320;
 
     var key = d3.select(".g-chart")
@@ -98,11 +98,12 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
 			.style("fill", "url(#gradient)")
 			.attr("transform", "translate(0,10)");
 
-		var y = d3.scaleLinear()
+		var y = d3.scale.linear()
 			.range([h-14, 0])
 			.domain([extent[0],extent[1]]);
 
-		var yAxis = d3.axisRight(y);
+		var yAxis = d3.svg.axis().scale(y).orient("right");
+		// d3.axis().right(y);
 
 		key.append("g")
 			.attr("class", "y axis")

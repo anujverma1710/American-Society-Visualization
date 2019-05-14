@@ -20,6 +20,20 @@ def display_plots():
     data = helper.getDataToSend(df)
     return data
 
+@app.route("/getDataPerYear")
+def getDataPerYear():
+    year = request.args.get('year', default='1970', type=str)
+    filename = "Data" + year +".csv"
+
+    df=helper.getDataFrameBasedOnYear(filename)
+    return df.to_csv()
+
+@app.route("/Data1970")
+def Data1970():
+    filename = "Data" + "1970" + ".csv"
+    df = helper.getDataFrameBasedOnYear(filename)
+    return df.to_csv()
 
 if __name__ == "__main__":
+
     app.run(host='127.0.0.1',port=5000,debug=True)

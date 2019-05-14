@@ -336,7 +336,74 @@ span.fa.arrow {
     min-height: 1000px;
   }
 }
+#selection{
+  display:block;
+  width:20%;
+  padding:10px;
+  margin: auto;
+  font-size: 16px;
+}
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
+.inactive.tick text{
+   z-index: 100;
+}
+.label {
+  -webkit-transition: fill 125ms linear;
+}
+
+.active .label:not(.inactive) {
+  font-weight: bold;
+
+}
+
+.label.inactive {
+  fill: #ccc;
+}
+
+.foreground path.inactive {
+  stroke: #ccc;
+  stroke-opacity: .5;
+  stroke-width: 1px;
+}
+
+.brush .extent {
+  fill-opacity: .3;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.background path {
+  fill: none;
+  stroke: none;
+  /*stroke-width: 20px;*/
+  pointer-events: stroke;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+  opacity:0.5;
+}
+
+.foreground path {
+  fill: none;
+  /*stroke: steelblue;*/
+  stroke-width: 1.5px;
+  opacity:0.8;
+}
+
+.axis .title {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
 /*--  drop_emnu --*/
 a.dropdown-toggle.dropdown-at {

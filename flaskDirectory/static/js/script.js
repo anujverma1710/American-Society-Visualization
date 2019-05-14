@@ -24,29 +24,56 @@ american_society.prototype = {
 }
 
 
-function get_map(url, attribute) {
+function get_map(url, attribute, year) {
 
-$.getJSON($SCRIPT_ROOT + url, {
+
+
+
+
+
+    $.getJSON($SCRIPT_ROOT + url, {
         attr: attribute
     }, function (result) {
         console.log(result)
 
         draw_usa_map(result, attribute);
     });
+
+    // $.getJSON($SCRIPT_ROOT + '/getDataPerYear', {
+    //         year: year
+    //     }, function (data) {
+    //         console.log(data)
+    //
+    //         storeDataForEveryAttribute(year, data );
+    //     });
+    queue()
+        .defer(d3.csv,"/getDataPerYear?year=" + year)
+        .await(storeDataForEveryAttribute)
+
+
+
+
 }
+
+function storeDataForEveryAttribute(error, Data1970){
+    console.log("error",error)
+    console.log(Data1970);
+    myParallel(Data1970);
+}
+
 
 function tooltipHtml(n, d, attr){	/* function to create html content string in tooltip div. */
 	switch(attr){
 		case "Sex": return "<h4>"+n+"</h4><table>"+
-            "<tr><td>Sex Ratio </td><td>&nbsp;</td><td>"+(d.Ratio)+"</td></tr>"+
-            "<tr><td>Population </td><td>&nbsp;</td><td>"+(d.Population)+"</td></tr>"+
+            "<tr><td style='width: 100px'>Sex Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Ratio)+"</td></tr>"+
+            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
 			"</table>";
 		case "Race": return "<h4>"+n+"</h4><table>"+
-            "<tr><td style='width: 100px'>Af-Am Ratio </td><td>&nbsp;</td><td>"+d.AA_Ratio+"</td></tr>"+
-			"<tr><td style='width: 100px'>Am-Ind Ratio </td><td>&nbsp;</td><td>"+d.AI_Ratio+"</td></tr>"+
-			"<tr><td style='width: 100px'>As-Pc Ratio </td><td>&nbsp;</td><td>"+d.APAC_Ratio+"</td></tr>"+
-			"<tr><td style='width: 100px'>White Ratio </td><td>&nbsp;</td><td>"+d.W_Ratio+"</td></tr>"+
-            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td>"+(d.Population)+"</td></tr>"+
+            "<tr><td style='width: 100px'>Af-Am Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.AA_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>Am-Ind Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.AI_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>As-Pc Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.APAC_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>White Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.W_Ratio+"</td></tr>"+
+            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
 			"</table>";
 
 	}
