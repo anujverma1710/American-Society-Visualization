@@ -48,9 +48,11 @@ function get_map(url, attribute, year) {
     //     });
     queue()
         .defer(d3.csv,"/getDataPerYear?year=" + year)
-        .await(storeDataForEveryAttribute)
-
-
+		.await(storeDataForEveryAttribute);
+		
+	queue()
+		.defer(d3.csv,"/getDataForScatterPlot?attr=" + attribute + "&year="+year)
+		.await(ScatterPlotWrapper);
 
 
 }
@@ -58,9 +60,13 @@ function get_map(url, attribute, year) {
 function storeDataForEveryAttribute(error, Data1970){
     console.log("error",error)
     console.log(Data1970);
-    myParallel(Data1970);
+	myParallel(Data1970);
 }
 
+function ScatterPlotWrapper(error, Data) {
+	console.log("error", error);
+	ScatterPlot(Data);
+}
 
 function tooltipHtml(n, d, attr){	/* function to create html content string in tooltip div. */
 	switch(attr){
