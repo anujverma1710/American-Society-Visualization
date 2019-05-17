@@ -1,24 +1,33 @@
 var parallelData = [];
 var dragging = {}, foreground, background;
-function myParallel(data){
+function myParallel(data, type){
     console.log("In My Parallel");
-    //console.log(data);
-    parallelData = data;
-    parallelData = data.splice(8,1);
-    parallelData = data.splice(10,1);
-    parallelData = data.splice(1,1);
     console.log(data);
     document.getElementById("parallelCoord").innerHTML = "";
     var margin = {top: 50, right: 70, bottom: 20, left: 100},
     width = 850 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
+    var firstDimension;
+
+    if (type == 1) {
+        parallelData = data.splice(8,1);
+        parallelData = data.splice(10,1);
+        parallelData = data.splice(1,1);
+        firstDimension = {
+            name: "STATE",
+            scale: d3.scale.ordinal().rangePoints([0, height]),
+            type: String
+        }
+    } else {
+        firstDimension = {
+            name: "YEAR",
+            scale: d3.scale.ordinal().rangePoints([0, height]),
+            type: String
+        }
+    }
 
     var dimensions = [
-    {
-        name: "STATE",
-        scale: d3.scale.ordinal().rangePoints([0, height]),
-        type: String
-    },
+    firstDimension,
     {
         name: "Total_Population",
         scale: d3.scale.linear().range([height, 0]),
@@ -45,7 +54,6 @@ function myParallel(data){
         type: Number
     }];
 
-//    var dragging = {}, foreground, background; /// MAKING IT GLOBAL
     var y = {}; // this element for brushing
 
     var color = d3.scale.ordinal()

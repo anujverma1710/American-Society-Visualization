@@ -110,7 +110,7 @@ function ScatterPlot(data) {
         .data(data)
         .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 3.5)
+        .attr("r", 6.5)
         .attr("cx", function(d) {
             return x(d[columnNames[1]]);
         })

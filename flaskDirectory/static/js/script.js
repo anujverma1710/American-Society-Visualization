@@ -67,12 +67,12 @@ function storeDataForAParticularState(error,data){
 
     var stateData = data
     getStackedBarChart(data,attr)
-
+	myParallel(data, type=2);
 }
 function storeDataForEveryAttribute(error, data){
     console.log("error",error)
     console.log(data);
-	myParallel(data);
+	myParallel(data, type=1);
 }
 
 function ScatterPlotWrapper(error, Data) {
