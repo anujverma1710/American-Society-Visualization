@@ -48,10 +48,6 @@ function get_map(url, attribute, year) {
     queue()
         .defer(d3.csv,"/getDataPerYear?year=" + year)
 		.await(storeDataForEveryAttribute);
-		
-	queue()
-		.defer(d3.csv,"/getDataForScatterPlot?attr=" + attribute + "&year="+year)
-		.await(ScatterPlotWrapper);
 }
 
 function aggregateDataStore(error, data){
@@ -65,19 +61,43 @@ function storeDataForAParticularState(error,data){
     console.log(data);
     var attr = $('#plotter').val()
 
-    var stateData = data
     getStackedBarChart(data,attr)
 	myParallel(data, type=2);
+
+	var scData = [];
+	data.forEach(function (d, i) {
+		scData.push(
+			{
+				[""] : i,
+				YEAR : d.YEAR,
+				PerCapitaIncome : d.PerCapitaIncome,
+				[attr + "_Ratio"] : d[attr + "_Ratio"]
+			}
+		)
+	});
+
+	ScatterPlot(scData, type=2);
 }
 function storeDataForEveryAttribute(error, data){
     console.log("error",error)
-    console.log(data);
+	console.log(data);
 	myParallel(data, type=1);
-}
 
-function ScatterPlotWrapper(error, Data) {
-	console.log("error", error);
-	ScatterPlot(Data);
+	var scData = [];
+	var temp = $('#plotter').val() + "_Ratio";
+
+	data.forEach(function (d, i) {
+		scData.push(
+			{
+				[""] : i,
+				STATE : d.STATE,
+				PerCapitaIncome : d.PerCapitaIncome,
+				[temp] : d[temp]
+			}
+		)
+	});
+
+	ScatterPlot(scData, type=1);
 }
 
 function tooltipHtml(n, d, attr){	/* function to create html content string in tooltip div. */

@@ -1,16 +1,14 @@
 // References
 // Tooltip: http://bl.ocks.org/williaster/af5b855651ffe29bdca1
 // Sc with Regression Line: https://bl.ocks.org/ctufts/298bfe4b11989960eeeecc9394e9f118
+// Connected ScatterPlot : http://bl.ocks.org/d3noob/38744a17f9c0141bcd04
 columnNames = [];
-function ScatterPlot(data) {
+function ScatterPlot(data, type) {
     console.log("In ScatterPlot");
     columnNames = Object.keys(data[0]);
     columnNames.splice(0,1);
     console.log(columnNames);
 
-    data.splice(8,1);
-    data.splice(10,1);
-    data.splice(1,1);
 
     document.getElementById("dualY-Scplot").innerHTML = "";
     var margin = {
@@ -46,8 +44,6 @@ function ScatterPlot(data) {
         d[columnNames[1]] = +d[columnNames[1]];
         d[columnNames[2]] = +d[columnNames[2]];
     });
-
-    var lineData = create_data(data);
 
     var line = d3.svg.line()
         .x(function(d) {
@@ -89,8 +85,8 @@ function ScatterPlot(data) {
 
     var tipMouseover = function(d) {
         var html  = d[columnNames[0]] + "<br/>" +
-                    d[columnNames[1]] + "<br/>" +
-                    d[columnNames[2]] + "<br/>";
+                    "Per Capita : " + d[columnNames[1]] + "<br/>" +
+                    $('#plotter').val() + "_Ratio : " + d[columnNames[2]].toFixed(2) + "<br/>";
         console.log(html);
         d3.select("#statetooltip").transition().duration(200).style("opacity", .9);
         d3.select("#statetooltip").html(html)
@@ -119,15 +115,27 @@ function ScatterPlot(data) {
         })
         .on("mouseover", tipMouseover)
         .on("mouseout", tipMouseout);
-
-    svg.append("path")
-        .datum(lineData)
-        .attr("class", "line")
-        .attr("d", line);
-
+    
+    if (type == 1) {
+        var lineData = getLineData(data);
+        svg.append("path")
+            .datum(lineData)
+            .attr("class", "line")
+            .attr("d", line);
+    } else {
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line")
+            .attr("stroke-width", 1.5)
+            .attr("d", d3.svg.line()
+                //.curve(d3.curveBasis) // Just add that to have a curve instead of segments
+                .x(function(d) { return x(d[columnNames[1]]); })
+                .y(function(d) { return y(d[columnNames[2]]); })
+                );
+    }
 }
 
-function create_data(data) {
+function getLineData(data) {
     var x = [];
     var y = [];
     var n = data.length;
@@ -135,17 +143,6 @@ function create_data(data) {
     var y_mean = 0;
     var term1 = 0;
     var term2 = 0;
-/*     var noise_factor = 100;
-    var noise = 0;
-    // create x and y values
-    for (var i = 0; i < n; i++) {
-        noise = noise_factor * Math.random();
-        noise *= Math.round(Math.random()) == 1 ? 1 : -1;
-        y.push(i / 5 + noise);
-        x.push(i + 1);
-        x_mean += x[i]
-        y_mean += y[i]
-    } */
     data.forEach(function (d) {
         x_mean += d[columnNames[1]];
         y_mean += d[columnNames[2]];

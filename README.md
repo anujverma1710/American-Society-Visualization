@@ -11,5 +11,4 @@ Analyzing the above changes
 TODO
 
 1) Stacked Bar Chart - Done for Sex and race
-2) Dual Y axis per state
-3) Chloropeth -  Integration is remaining for attributes apart from sex and race.
+2) Chloropeth -  Integration is remaining for attributes apart from sex and race.
