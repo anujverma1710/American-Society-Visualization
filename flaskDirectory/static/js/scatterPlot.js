@@ -15,12 +15,12 @@ function ScatterPlot(data) {
     document.getElementById("dualY-Scplot").innerHTML = "";
     var margin = {
         top: 20,
-        right: 20,
+        right: 10,
         bottom: 30,
-        left: 40
+        left: 50
     },
-    width = 900 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 750 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .range([0, width]);
@@ -86,30 +86,25 @@ function ScatterPlot(data) {
         .style("text-anchor", "end")
         .text(columnNames[2]);
 
-    /* var tooltip = svg.append("g")
-        .attr("class", "statetooltip")
-        .style("opacity", 0);
 
     var tipMouseover = function(d) {
         var html  = d[columnNames[0]] + "<br/>" +
                     d[columnNames[1]] + "<br/>" +
                     d[columnNames[2]] + "<br/>";
         console.log(html);
-
-        tooltip.html(html)
+        d3.select("#statetooltip").transition().duration(200).style("opacity", .9);
+        d3.select("#statetooltip").html(html)
             .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 208) + "px")
-            .style("z-index",1)
-        .transition()
-            .duration(200)
-            .style("opacity", .9) 
+            .style("top", (d3.event.pageY - 28) + "px")
+            .style("z-index",1);
+
     };
 
     var tipMouseout = function(d) {
-        tooltip.transition()
+        d3.select("#statetooltip").transition()
             .duration(300)
             .style("opacity", 0);
-    }; */
+    };
 
     svg.selectAll(".dot")
         .data(data)
@@ -121,9 +116,9 @@ function ScatterPlot(data) {
         })
         .attr("cy", function(d) {
             return y(d[columnNames[2]]);
-        })/* 
+        })
         .on("mouseover", tipMouseover)
-        .on("mouseout", tipMouseout) */;
+        .on("mouseout", tipMouseout);
 
     svg.append("path")
         .datum(lineData)

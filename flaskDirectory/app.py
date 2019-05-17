@@ -28,11 +28,30 @@ def getDataPerYear():
     df=helper.getDataFrameBasedOnYear(filename)
     return df.to_csv()
 
-@app.route("/Data1970")
-def Data1970():
-    filename = "Data" + "1970" + ".csv"
-    df = helper.getDataFrameBasedOnYear(filename)
-    return df.to_csv()
+@app.route("/getAggregateData")
+def getAggregateData():
+    return helper.getAggregateData().to_csv()
+
+@app.route("/getDataPerState")
+def getDataPerState():
+
+	state = request.args.get('state', default='Alabama', type=str)
+	row = helper.getStateRow(state)
+	df = pd.DataFrame()
+	for year in range(1970, 2020, 10):
+		filename = "Data" + str(year) + ".csv"
+		tempdf = helper.getDataFrameBasedOnYear(filename)
+		tempdf["YEAR"] = str(year)
+		tempdf = pd.DataFrame(tempdf.iloc[row,:]).T
+		df = pd.concat([tempdf,df], axis=0)
+	df = df.reset_index(drop=True)
+	return df.to_csv()
+
+# @app.route("/Data1970")
+# def Data1970():
+#     filename = "Data" + "1970" + ".csv"
+#     df = helper.getDataFrameBasedOnYear(filename)
+#     return df.to_csv()
 
 @app.route("/getDataForScatterPlot")
 def getDataForScatterPlot():

@@ -26,26 +26,25 @@ american_society.prototype = {
 
 function get_map(url, attribute, year) {
 
-
-
-
-
-
+    var state = $('#stateID').val()
+    if(state!="") {
+        queue()
+            .defer(d3.csv, "/getDataPerState?state=" + state)
+            .await(storeDataForAParticularState)
+    }
+    else{
+        queue()
+            .defer(d3.csv, "/getAggregateData")
+            .await(aggregateDataStore)
+    }
     $.getJSON($SCRIPT_ROOT + url, {
         attr: attribute
     }, function (result) {
         console.log(result)
 
-        draw_usa_map(result, attribute);
+        draw_usa_map(result, attribute, year);
     });
 
-    // $.getJSON($SCRIPT_ROOT + '/getDataPerYear', {
-    //         year: year
-    //     }, function (data) {
-    //         console.log(data)
-    //
-    //         storeDataForEveryAttribute(year, data );
-    //     });
     queue()
         .defer(d3.csv,"/getDataPerYear?year=" + year)
 		.await(storeDataForEveryAttribute);
@@ -53,14 +52,27 @@ function get_map(url, attribute, year) {
 	queue()
 		.defer(d3.csv,"/getDataForScatterPlot?attr=" + attribute + "&year="+year)
 		.await(ScatterPlotWrapper);
-
-
 }
 
-function storeDataForEveryAttribute(error, Data1970){
+function aggregateDataStore(error, data){
+    var attr = $('#plotter').val()
+
+    getStackedBarChart(data,attr)
+}
+
+function storeDataForAParticularState(error,data){
+    console.log("In storeDataForAParticularState");
+    console.log(data);
+    var attr = $('#plotter').val()
+
+    var stateData = data
+    getStackedBarChart(data,attr)
+
+}
+function storeDataForEveryAttribute(error, data){
     console.log("error",error)
-    console.log(Data1970);
-	myParallel(Data1970);
+    console.log(data);
+	myParallel(data);
 }
 
 function ScatterPlotWrapper(error, Data) {
@@ -71,8 +83,8 @@ function ScatterPlotWrapper(error, Data) {
 function tooltipHtml(n, d, attr){	/* function to create html content string in tooltip div. */
 	switch(attr){
 		case "Sex": return "<h4>"+n+"</h4><table>"+
-            "<tr><td style='width: 100px'>Sex Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Ratio)+"</td></tr>"+
-            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+            "<tr><td >Sex Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Ratio)+"</td></tr>"+
+            "<tr><td >Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
 			"</table>";
 		case "Race": return "<h4>"+n+"</h4><table>"+
             "<tr><td style='width: 100px'>Af-Am Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.AA_Ratio+"</td></tr>"+
@@ -85,7 +97,7 @@ function tooltipHtml(n, d, attr){	/* function to create html content string in t
 	}
 }
 
-function draw_usa_map(data, attr){
+function draw_usa_map(data, attr, year){
     var sampleData ={};	/* Sample random data. */
 	var Fips = {
 			"Alabama": 1,
@@ -141,6 +153,7 @@ function draw_usa_map(data, attr){
 			"Wyoming":56
 		};
 	var testData = []
+    var dataForStackedBarChart=[]
 	var totalPopulationOfUs = {}
 	var totalMalePopulation = {}
 	var totalFemalePopulation = {}
@@ -168,16 +181,18 @@ function draw_usa_map(data, attr){
 					totalFemalePopulation[i] = totalFemalePopulation[i] + data[d]["Female_Ratio_" + i] * data[d]["Total_Population_" + i]
 				}
 			}
-			sampleData[d] = getDataBasedonAttribute(attr,data[d],sampleData, Fips)
+			sampleData[d] = getDataBasedonAttribute(attr,data[d],sampleData, Fips, year)
 			testData.push(sampleData[d])
 		});
+
+	// getStackedBarChart(result,attribute, year);
 
 	console.log("sampleData : ", sampleData)
 
 	$('#yearSpan').text($('#year').val())
-	$('#popSpan').text(fnum(totalPopulationOfUs[2010]))
+	$('#popSpan').text(fnum(totalPopulationOfUs[year]))
 	if(attr =="Sex"){
-		var temp = (totalMalePopulation["2010"]/totalFemalePopulation["2010"])*100
+		var temp = (totalMalePopulation[""+year]/totalFemalePopulation[""+year])*100
 		$('#ratioSpan').text(temp.toFixed(2))
 	}
 	$('#ratioSpanLabel').text(attr +" Ratio")
@@ -191,7 +206,7 @@ function draw_usa_map(data, attr){
 
 
 
-function getDataBasedonAttribute(attr, data, sample, Fips){
+function getDataBasedonAttribute(attr, data, sample, Fips, year){
 	var dict={}
 	var low=Math.round(100*Math.random())
 	switch(attr){
@@ -199,20 +214,20 @@ function getDataBasedonAttribute(attr, data, sample, Fips){
 					sample = {
 						State:data["STATE"],
 						Fips:Fips[data["STATE"]],
-						Ratio:dict[2010] ,
+						Ratio:dict[year] ,
                     	color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100),
-                		Population:data["Total_Population_2010"]
+                		Population:data["Total_Population_"+year]
 					};
 					return sample;
 		case "Race": sample = {
 						State:data["STATE"],
 						Fips:Fips[data["STATE"]],
-						AA_Ratio:(data["AA_Ratio_1970"]*100).toFixed(2) ,
-						AI_Ratio:(data["AI_Ratio_1970"]*100).toFixed(2),
-						APAC_Ratio:(data["APAC_Ratio_1970"]*100).toFixed(2) ,
-						W_Ratio:(data["W_Ratio_1970"]*100).toFixed(2) ,
+						AA_Ratio:(data["AA_Ratio_"+year]*100).toFixed(2) ,
+						AI_Ratio:(data["AI_Ratio_"+year]*100).toFixed(2),
+						APAC_Ratio:(data["APAC_Ratio_"+year]*100).toFixed(2) ,
+						W_Ratio:(data["W_Ratio_"+year]*100).toFixed(2) ,
 						color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100),
-						Population:data["Total_Population_1970"]
+						Population:data["Total_Population_"+year]
 					};
 					return sample;
 

@@ -12,6 +12,10 @@
 	{#	fill-opacity:0.5;#}
 	{#}#}
 
+    .y .tick line {
+    stroke: #ddd;
+  }
+
     .legends {
 	position:absolute;
 	{#left:20px;#}
@@ -127,6 +131,7 @@
 </head>
 <body>
 <div id="statetooltip" ></div>
+<input type="hidden" id="stateID" name="stateID" value="">
     <div id="">
 
         <nav class="navbar-default navbar-static-top" role="navigation">
@@ -179,7 +184,7 @@
 
             <div class="content-main">
 
-                    <div class="col-md-5 content-top-2">
+                    <div class="col-md-5 graph-box1" style="margin-top: 0px">
                         <!---start-chart---->
                         <!----->
                         <div class="content-graph">
@@ -285,6 +290,8 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/chloropeth.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/parallelCoordinates.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/scatterPlot.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/stackedBarChart.js') }}"></script>
+
 
 
 

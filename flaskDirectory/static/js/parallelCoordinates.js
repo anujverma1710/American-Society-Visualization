@@ -10,8 +10,8 @@ function myParallel(data){
     console.log(data);
     document.getElementById("parallelCoord").innerHTML = "";
     var margin = {top: 50, right: 70, bottom: 20, left: 100},
-    width = 900 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 850 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
     var dimensions = [
     {

@@ -7,7 +7,7 @@ function loadChloropethMap(data, toolTip, attr){
 //   .style("opacity", 0);
 //Sets dimensions
 var margin = {top: 10, left: 10, bottom: 10, right: 10}
-  , width = 640
+  , width = 600
   , width = width - margin.left - margin.right
   , mapRatio = .5
   , height = width * mapRatio;
@@ -21,7 +21,7 @@ var projection = d3.geo.albersUsa()
 var path = d3.geo.path()
     .projection(projection);
 
-//Appened svg to page
+//Append svg to page
 var map = d3.select(".g-chart").append("svg").attr("id", "statesvg")
   .style('height', height + 'px')
   .style('width', width + 'px');
@@ -150,7 +150,18 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
     })
     .on("mouseout", function() {
         d3.select("#statetooltip").transition().duration(500).style("opacity", 0);
-    });
+    })
+      .on("click",function(d){
+          console.log("d : ",d)
+          var state = stateByFIPS[d.id]
+          $('#stateID').val(state)
+          console.log("clicked ", state)
+          d3.select(this).style("fill","brown")
+          queue()
+            .defer(d3.csv, "/getDataPerState?state=" + state)
+            .await(storeDataForAParticularState)
+
+      });
   //Appends chart source
   d3.select(".g-source-bold")
     .text("SOURCE: ")
