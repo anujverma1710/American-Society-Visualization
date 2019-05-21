@@ -10,5 +10,7 @@ Analyzing the above changes
 # How to Run
 TODO
 
-1) Stacked Bar Chart - Done for Sex and race
-2) Chloropeth -  Integration is remaining for attributes apart from sex and race.
+1) Profiler dropdown binding 
+2) Poster
+3) Final Report
+4) Code and Video Submission
