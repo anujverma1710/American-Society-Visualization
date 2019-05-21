@@ -69,7 +69,7 @@ function storeDataForAParticularState(error,data){
 	var profiler = $('#profiler').val()
 
     getStackedBarChart(data,attr)
-	myParallel(data, type=2);
+	myParallel(data, type=2, profiler);
 
 	var scData = [];
 	data.forEach(function (d, i) {
@@ -77,7 +77,7 @@ function storeDataForAParticularState(error,data){
 			{
 				[""] : i,
 				YEAR : d.YEAR,
-				PerCapitaIncome : d.PerCapitaIncome,
+				[profiler] : d[profiler],
 				[attr + "_Ratio"] : d[attr + "_Ratio"]
 			}
 		)
@@ -88,18 +88,18 @@ function storeDataForAParticularState(error,data){
 function storeDataForEveryAttribute(error, data){
     console.log("error",error)
 	console.log(data);
-	myParallel(data, type=1);
-
+	
 	var scData = [];
 	var temp = $('#plotter').val() + "_Ratio";
 	var profiler = $('#profiler').val()
+	myParallel(data, type=1, profiler);
 
 	data.forEach(function (d, i) {
 		scData.push(
 			{
 				[""] : i,
 				STATE : d.STATE,
-				PerCapitaIncome : d.PerCapitaIncome,
+				[profiler] : d[profiler],
 				[temp] : d[temp]
 			}
 		)

@@ -85,7 +85,7 @@ function ScatterPlot(data, type) {
 
     var tipMouseover = function(d) {
         var html  = d[columnNames[0]] + "<br/>" +
-                    "Per Capita : " + d[columnNames[1]] + "<br/>" +
+                    $('#profiler :selected').text() + " : " + d[columnNames[1]] + "<br/>" +
                     $('#plotter').val() + "_Ratio : " + d[columnNames[2]].toFixed(2) + "<br/>";
         console.log(html);
         d3.select("#statetooltip").transition().duration(200).style("opacity", .9);

@@ -1,7 +1,7 @@
 var parallelData = [];
 var dragging = {}, foreground, background;
-function myParallel(data, type){
-    console.log("In My Parallel");
+function myParallel(data, type, profiler){
+    console.log("In My Parallel", profiler);
     console.log(data);
     document.getElementById("parallelCoord").innerHTML = "";
     var margin = {top: 50, right: 70, bottom: 20, left: 100},
@@ -49,7 +49,7 @@ function myParallel(data, type){
         type: Number
     },
     {
-        name: "PerCapitaIncome",
+        name: profiler,
         scale: d3.scale.linear().range([height, 0]),
         type: Number
     }];
@@ -57,8 +57,8 @@ function myParallel(data, type){
     var y = {}; // this element for brushing
 
     var color = d3.scale.ordinal()
-        .domain(['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Illinois','South Korea'])
-        .range(['#ff7761','#fdc23e','#a8dba8','blue','purple','olive','black','brown','green','#fd999a','#8F2D56','yellow','magenta']);
+        .domain([])
+        .range(['#ff7777']);
 
     var x = d3.scale.ordinal()
         .domain(dimensions.map(function(d) { return d.name; }))
@@ -106,7 +106,7 @@ function myParallel(data, type){
             .data(data)
         .enter().append("path")
             .attr("d", draw)
-            .attr('stroke', function(d) {return color(d.country); });
+            .attr('stroke', function(d) {return color(d.STATE); });
 
     dimension.append("g")
             .attr("class", "axis")
