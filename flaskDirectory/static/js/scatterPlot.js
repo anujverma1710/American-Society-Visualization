@@ -139,6 +139,11 @@ function ScatterPlot(data, type) {
             .datum(lineData)
             .attr("class", "line")
             .attr("d", line);
+
+        document.getElementById("pvalueText").innerHTML = "Correlation : " + stats[0]
+                            + ", p-value : " + stats[1];
+        if (stats [1]  <= 0.05)
+            document.getElementById("pvalueText").innerHTML += " Statistically Significant at alpha = 0.05";
     } else {
         svg.append("path")
             .datum(data)
