@@ -205,6 +205,21 @@ function getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate){
             dataForTooltip[d.Fips] = { AA_Ratio : d.AA_Ratio, AI_Ratio : d.AI_Ratio, APAC_Ratio:d.APAC_Ratio, W_Ratio:d.W_Ratio, Population:d.Population}
             })
             return dataForTooltip
+
+        case "Urban" : maptemplate.forEach(function(d) {
+            dataForTooltip[d.Fips] = { Urban : d.Urban, Rural : d.Rural, Suburban:d.Suburban, Population:d.Population}
+            })
+        return dataForTooltip
+
+        case "Native" : maptemplate.forEach(function(d) {
+            dataForTooltip[d.Fips] = { Native : d.Native, Foreign : d.Foreign, Population:d.Population}
+            })
+            return dataForTooltip
+
+        case "Immigrant" : maptemplate.forEach(function(d) {
+            dataForTooltip[d.Fips] = { Europe : d.Europe, Asia : d.Asia, Africa:d.Africa, Oceania:d.Oceania, Americas : d. Americas, Other: d.Other ,   Population:d.Population}
+            })
+            return dataForTooltip
     }
 }
 
@@ -215,6 +230,13 @@ function getDomainBasedOnAttribute(attr,domain, maptemplate){
                     return domain
         case "Race":maptemplate.forEach(function(d) { domain.push(parseFloat(d.W_Ratio)); })
                     return domain
+        case "Urban":maptemplate.forEach(function(d) { domain.push(parseFloat(d.Urban)); })
+                    return domain
+        case "Native":maptemplate.forEach(function(d) { domain.push(parseFloat(d.Native)); })
+                    return domain
+        case "Immigrant":maptemplate.forEach(function(d) { domain.push(parseFloat(d.Americas)); })
+                    return domain
+
     }
 }
 
@@ -223,6 +245,12 @@ function getDataByFIPSBasedOnAttribute(attr, dataByFIPS, maptemplate){
         case "Sex" :    maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Ratio; });
                         return dataByFIPS
         case "Race":    maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.W_Ratio; });
+                        return dataByFIPS
+        case "Urban":    maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Urban; });
+                        return dataByFIPS
+        case "Native":    maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Native; });
+                        return dataByFIPS
+        case "Immigrant":    maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Americas; });
                         return dataByFIPS
 
     }

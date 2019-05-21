@@ -4,18 +4,24 @@ function american_society() {
 
 american_society.prototype = {
     init() {
-        console.log("Helllooooooo")
-
         d3.select("#plotter")
+            .on("change", this.getDataToShow);
+
+        d3.select("#profiler")
             .on("change", this.getDataToShow);
 
         d3.select("#year")
             .on("change", this.getDataToShow);
 
+
+
         this.getDataToShow();
 
     },
+	
 	getDataToShow() {
+    	$('#stateID').val("")
+
         var attr = $('#plotter').val()
 		var year = $('#year').val()
 
@@ -60,6 +66,7 @@ function storeDataForAParticularState(error,data){
     console.log("In storeDataForAParticularState");
     console.log(data);
     var attr = $('#plotter').val()
+	var profiler = $('#profiler').val()
 
     getStackedBarChart(data,attr)
 	myParallel(data, type=2);
@@ -85,6 +92,7 @@ function storeDataForEveryAttribute(error, data){
 
 	var scData = [];
 	var temp = $('#plotter').val() + "_Ratio";
+	var profiler = $('#profiler').val()
 
 	data.forEach(function (d, i) {
 		scData.push(
@@ -112,6 +120,38 @@ function tooltipHtml(n, d, attr){	/* function to create html content string in t
 			"<tr><td style='width: 100px'>As-Pc Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.APAC_Ratio+"</td></tr>"+
 			"<tr><td style='width: 100px'>White Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.W_Ratio+"</td></tr>"+
             "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+			"</table>";
+		case "Age": return "<h4>"+n+"</h4><table>"+
+            "<tr><td style='width: 100px'>Af-Am Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.AA_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>Am-Ind Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.AI_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>As-Pc Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.APAC_Ratio+"</td></tr>"+
+			"<tr><td style='width: 100px'>White Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.W_Ratio+"</td></tr>"+
+            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+			"</table>";
+		case "Native":
+			return "<h4>"+n+"</h4><table>"+
+            "<tr><td style='width: 100px'>Native Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Native+"</td></tr>"+
+			"<tr><td style='width: 100px'>Foreign Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Foreign+"</td></tr>"+
+            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+			"</table>";
+		case "Urban":
+			return "<h4>"+n+"</h4><table>"+
+            "<tr><td style='width: 100px'>Urban Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Urban+"</td></tr>"+
+			"<tr><td style='width: 100px'>Suburban Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Suburban+"</td></tr>"+
+			"<tr><td style='width: 100px'>Rural Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Rural+"</td></tr>"+
+            "<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+			"</table>";
+		case "Immigrant":
+			return "<h4>"+n+"</h4><table>"+
+            "<tr><td style='width: 100px'>Europe Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Europe+"</td></tr>"+
+			"<tr><td style='width: 100px'>Asia Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Asia+"</td></tr>"+
+			"<tr><td style='width: 100px'>Africa Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Africa+"</td></tr>"+
+			"<tr><td style='width: 100px'>Oceania Ratio </td><td>&nbsp;</td><td style='text-align: left'>"+d.Oceania+"</td></tr>"+
+            "<tr><td style='width: 100px'>Americas </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Americas)+"</td></tr>"+
+			"<tr><td style='width: 100px'>Other </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Other)+"</td></tr>"+
+			"<tr><td style='width: 100px'>Population </td><td>&nbsp;</td><td style='text-align: left'>"+(d.Population)+"</td></tr>"+
+
+
 			"</table>";
 
 	}
@@ -250,6 +290,41 @@ function getDataBasedonAttribute(attr, data, sample, Fips, year){
 						Population:data["Total_Population_"+year]
 					};
 					return sample;
+		case "Age": return {}
+		case "Urban" :  sample={
+						State:data["STATE"],
+						Fips:Fips[data["STATE"]],
+						color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100),
+						Population:data["Total_Population_"+year],
+						Urban:(data["Urban_Ratio_"+year]*100).toFixed(2) ,
+						Suburban:(data["Suburban_Ratio_"+year]*100).toFixed(2),
+						Rural:(data["Rural_Ratio_"+year]*100).toFixed(2)
+
+					};
+					return  sample;
+		case "Native" : sample={
+						State:data["STATE"],
+						Fips:Fips[data["STATE"]],
+						color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100),
+						Population:data["Total_Population_"+year],
+						Native:(data["Native_Ratio_"+year]*100).toFixed(2),
+						Foreign:(data["Foreign_Ratio_"+year]*100).toFixed(2)
+					};
+					return  sample;
+
+		case "Immigrant": sample={
+						State:data["STATE"],
+						Fips:Fips[data["STATE"]],
+						color:d3.interpolate("#ffffcc", "rgb(69, 173, 168)")(low/100),
+						Population:data["Total_Population_"+year],
+						Europe:(data["Europe_Ratio_Foreign_"+year]*100).toFixed(2) ,
+						Asia:(data["Asia_Ratio_Foreign_"+year]*100).toFixed(2),
+						Africa:(data["Africa_Ratio_Foreign_"+year]*100).toFixed(2),
+						Oceania:(data["Oceania_Ratio_Foreign_"+year]*100).toFixed(2),
+						Americas:(data["Americas_Ratio_Foreign_"+year]*100).toFixed(2),
+						Other:(data["Other_Ratio_Foreign_"+year]*100).toFixed(2)
+					};
+					return  sample;
 
 	}
 

@@ -166,6 +166,39 @@ function getLabelsBasedOnAttribute(attr, i){
                     return "Asia"
             }
     }
+    else if(attr == "Native"){
+        switch (i) {
+                case 0:
+                    return "Native";
+                case 1:
+                    return "Foreign";
+            }
+    }
+    else if(attr == "Immigrant"){
+        switch (i) {
+                case 0:
+                    return "Europe";
+                case 1:
+                    return "Asia";
+                case 2:
+                    return "Africa";
+                case 3:
+                    return "Oceania";
+                case 4:
+                    return "Americas"
+
+            }
+    }
+    else if(attr == "Urban"){
+        switch (i) {
+                case 0:
+                    return "Urban";
+                case 1:
+                    return "Suburban";
+                case 2:
+                    return "Rural";
+            }
+    }
 }
 function getFormattedDataForStackedBar(result, attribute){
 
@@ -197,6 +230,50 @@ function getFormattedDataForStackedBar(result, attribute){
             })
 
             return formattedData
+
+        case "Native" :
+            result.forEach(function (d) {
+                formattedData.push(
+                    {
+                        year :d.YEAR,
+                        Native : d.Native,
+                        Foreign : d.Foreign,
+                    }
+                )
+            })
+
+            return formattedData
+
+        case "Urban" :
+            result.forEach(function (d) {
+                formattedData.push(
+                    {
+                        year :d.YEAR,
+                        Urban : d.Urban,
+                        Suburban : d.Suburban,
+                        Rural : d.Rural
+
+                    }
+                )
+            })
+
+            return formattedData
+
+        case "Immigrant" :
+            result.forEach(function (d) {
+                formattedData.push(
+                    {
+                        year :d.YEAR,
+                        Europe : d.Europe,
+                        Asia : d.Asia,
+                        Africa : d.Africa,
+                        Oceania : d.Oceania,
+                        Americas : d.Americas
+                    }
+                )
+            })
+
+            return formattedData
     }
 }
 
@@ -209,6 +286,12 @@ function getSectionedAttributes(attr){
         case "Sex" : arr.push(["female","male"])
                         return arr;
         case "Race" : arr.push(["AI","APAC","Africa","Americas","Asia"])
+                        return arr;
+        case "Native" : arr.push(["Native","Foreign"])
+                        return arr;
+        case "Urban" : arr.push(["Urban","Suburban","Rural"])
+                        return arr;
+        case "Immigrant" : arr.push(["Europe","Asia","Africa","Oceania","Americas","Other"])
                         return arr;
 
     }

@@ -13,6 +13,9 @@ def index():
 def display_plots():
     attr = request.args.get('attr', default='Sex', type=str)
     # Temporary hack. Remove later
+    if attr == 'Immigrant':
+        attr = "Native"
+
     if attr != 'Immigrant':
         attr += "_Ratio_Data.csv"
 
