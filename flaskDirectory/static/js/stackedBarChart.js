@@ -27,7 +27,8 @@ function getStackedBarChart(result, attribute) {
     var dataset = d3.layout.stack()(sections[0].map(function (fruit) {
         console.log(fruit);
         return data.map(function (d) {
-            return {x: parse(d.year), y: +d[fruit]};
+            return {x: parse(d.year), y: +d[fruit]
+                , percentage: (+d[fruit]/d.Total_Population).toFixed(4)};
         });
     }));
 
@@ -98,7 +99,7 @@ function getStackedBarChart(result, attribute) {
         .attr("width", x.rangeBand())
         .on("mouseover", function (d) {
 
-            var html = "<span>" + d.y+"</span>"
+            var html = "<span>" + d.y+" (" + d.percentage + "%)</span>"
             d3.select("#statetooltip").transition().duration(200).style("opacity", .9).style("width", "100px");
 
             d3.select("#statetooltip").html(html)
@@ -159,11 +160,7 @@ function getLabelsBasedOnAttribute(attr, i){
                 case 1:
                     return "APAC";
                 case 2:
-                    return "Africa";
-                case 3:
-                    return "Americas";
-                case 4:
-                    return "Asia"
+                    return "AA";
             }
     }
     else if(attr == "Native"){
@@ -212,7 +209,8 @@ function getFormattedDataForStackedBar(result, attribute){
 
                 year : d.YEAR,
                 female : d.Female,
-                male:d.Male
+                male:d.Male,
+                Total_Population: d.Total_Population
             })})
             return formattedData
         case "Race" :
@@ -222,9 +220,8 @@ function getFormattedDataForStackedBar(result, attribute){
                         year :d.YEAR,
                         AI : d.AI,
                         APAC : d.APAC,
-                        Africa: d.Africa,
-                        Americas: d.Americas,
-                        Asia : d.Asia
+                        AA: d.AA,
+                        Total_Population: parseInt(d.AI) + parseInt(d.APAC) + parseInt(d.AA),
                     }
                 )
             })
@@ -238,6 +235,7 @@ function getFormattedDataForStackedBar(result, attribute){
                         year :d.YEAR,
                         Native : d.Native,
                         Foreign : d.Foreign,
+                        Total_Population: d.Total_Population
                     }
                 )
             })
@@ -251,8 +249,8 @@ function getFormattedDataForStackedBar(result, attribute){
                         year :d.YEAR,
                         Urban : d.Urban,
                         Suburban : d.Suburban,
-                        Rural : d.Rural
-
+                        Rural : d.Rural,
+                        Total_Population: d.Total_Population
                     }
                 )
             })
@@ -268,7 +266,8 @@ function getFormattedDataForStackedBar(result, attribute){
                         Asia : d.Asia,
                         Africa : d.Africa,
                         Oceania : d.Oceania,
-                        Americas : d.Americas
+                        Americas : d.Americas,
+                        Total_Population: d.Foreign
                     }
                 )
             })
@@ -285,7 +284,7 @@ function getSectionedAttributes(attr){
 
         case "Sex" : arr.push(["female","male"])
                         return arr;
-        case "Race" : arr.push(["AI","APAC","Africa","Americas","Asia"])
+        case "Race" : arr.push(["AI","APAC","AA"])
                         return arr;
         case "Native" : arr.push(["Native","Foreign"])
                         return arr;
