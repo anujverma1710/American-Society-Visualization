@@ -1,5 +1,5 @@
 import pandas as pd
-
+from scipy.stats import pearsonr
 
 stateCode = {
 	'Alabama': 'AL',
@@ -89,3 +89,23 @@ def getDataToSend(dataframe):
 	data = { dataframe['ID'][i]: { j: dataframe[j][i] for j in cols } for i in range(len(dataframe))}
 	data = pd.io.json.dumps(data)
 	return data
+
+def getStats(dataframe, attr1, attr2):
+	x = dataframe[attr1].tolist()
+	y = dataframe[attr2].tolist()
+
+	return pearsonr(x, y)
+
+def writeToFile(name, corr, pval):
+	file = open(name, 'w')
+	file.write(str(round(corr,4))+"\n")
+	file.write(str(round(pval,4)))
+	file.close()
+
+def readFromFile(name):
+	stat = []
+	with open(name, 'r') as f:
+		for line in f:
+			num = float(line)
+			stat.append(num)
+	return stat

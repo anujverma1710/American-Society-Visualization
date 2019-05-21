@@ -8,7 +8,24 @@ function ScatterPlot(data, type) {
     columnNames = Object.keys(data[0]);
     columnNames.splice(0,1);
     console.log(columnNames);
-
+    var stats;
+    $.ajax({
+		type: 'GET',
+		url: 'getStats',
+        contentType: 'application/json; charset=utf-8',
+        async: false,
+		xhrFields: {
+		    withCredentials: false
+		},
+		headers: {
+		},
+		success: function(result) {
+            stats = JSON.parse(result);
+		},
+		error: function(result) {
+		}
+      });
+      console.log(stats);
 
     document.getElementById("dualY-Scplot").innerHTML = "";
     var margin = {
