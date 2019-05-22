@@ -153,7 +153,7 @@
                                 <select id="plotter">
                                     <option value="Sex">Sex</option>
                                     <option value="Race">Race</option>
-                                    <option value="Age">Age</option>
+{#                                    <option value="Age">Age</option>#}
                                     <option value="Urban">Rural/Urban</option>
                                     <option value="Native">Native/Foreigner</option>
                                     <option value ="Immigrant">Immigrant Origin</option>
@@ -211,8 +211,8 @@
                     <div class="col-md-1" style="font-size: 70%">
                         <div class="content-top-1">
                             <div class="col-md-6 top-content">
-                                <h5>Year</h5>
-                                <label><span id="yearSpan"></span></label>
+                                <h5 id="stateOrYear"></h5>
+                                <label><span id="yearSpan" style="width:100px"></span></label>
                             </div>
                              <div class="clearfix"> </div>
                         </div>
@@ -255,7 +255,6 @@
                 <div class="col-md-6 graph-box1">
                     <div class="content-graph">
                         <div class="graph-container">
-                            <div id="pvalueText"></div>
                             <div id="dualY-Scplot">
 
                             </div>

@@ -52,7 +52,7 @@ function get_map(url, attribute, year) {
     });
 
     queue()
-        .defer(d3.csv,"/getDataPerYear?year=" + year + "&attr=" + attribute + "&profiler=" + $('#profiler').val())
+        .defer(d3.csv,"/getDataPerYear?year=" + year)
 		.await(storeDataForEveryAttribute);
 }
 
@@ -227,6 +227,7 @@ function draw_usa_map(data, attr, year){
 	d3.select('.legends').remove();
 
 
+
 	["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
 	"ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
 	"MI", "WY", "MT", "ID", "WA", "DC", "TX", "CA", "AZ", "NV", "UT",
@@ -249,7 +250,16 @@ function draw_usa_map(data, attr, year){
 
 	console.log("sampleData : ", sampleData)
 
-	$('#yearSpan').text($('#year').val())
+    var selectedState = $('#stateID').val()
+    if(selectedState!=""){
+        $('#stateOrYear').text("State");
+        $('#yearSpan').text(selectedState)
+    }
+	else{
+	    $('#stateOrYear').text("Year");
+	    $('#yearSpan').text($('#year').val())
+    }
+
 	$('#popSpan').text(fnum(totalPopulationOfUs[year]))
 	if(attr =="Sex"){
 		var temp = (totalMalePopulation[""+year]/totalFemalePopulation[""+year])*100

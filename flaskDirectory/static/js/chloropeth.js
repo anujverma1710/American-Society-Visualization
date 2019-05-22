@@ -48,7 +48,7 @@ d3.selection.prototype.moveToBack = function() {
 
 function ready(us, maptemplate, map, path, projection, toolTip, margin, width , height, attr, mapRatio) {
 
-    console.log(us, maptemplate);
+    console.log(us, "maptemplate ",maptemplate);
 
     // var lowColor = '#f9f9f9'
     var lowColor="#ffffcc";
@@ -118,15 +118,16 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
 
           var dataForTooltip={}
           dataForTooltip = getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate)
-
+    var popByFips={}
+    maptemplate.forEach(function(d) { popByFips[d.Fips] = d.Population; });
           //Pair state name with state id
           var stateByFIPS = {};
           maptemplate.forEach(function(d) { stateByFIPS[d.Fips] = d.State; });
 
           //Appends chart headline
-          d3.select(".g-hed").text("Map headline goes here");
+          d3.select(".g-hed").text("US MAP based on "+ attr +" Ratio");
           //Appends chart intro text
-          d3.select(".g-intro").text("Map intro text goes here. Write a short sentence describing the map here.");
+          // d3.select(".g-intro").text("Map intro text goes here. Write a short sentence describing the map here.");
           //Append states
 
 
@@ -154,7 +155,13 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
       .on("click",function(d){
           console.log("d : ",d)
           var state = stateByFIPS[d.id]
+          var data = dataByFIPS[d.id]
+            var pop  = popByFips[d.id]
+          $('#popSpan').text(fnum(pop))
           $('#stateID').val(state)
+          $('#stateOrYear').text("State");
+        $('#yearSpan').text(state)
+        $('#ratioSpan').text(data)
           console.log("clicked ", state)
           d3.select(this).style("fill","brown")
           queue()
@@ -167,7 +174,7 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
     .text("SOURCE: ")
     .attr("class", "g-source-bold");
   d3.select(".g-source-reg")
-    .text("Chart source info goes here")
+    .text("https://usa.ipums.org/usa/")
     .attr("class", "g-source-reg");
 
 
