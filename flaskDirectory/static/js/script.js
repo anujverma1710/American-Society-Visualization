@@ -246,8 +246,6 @@ function draw_usa_map(data, attr, year){
 			testData.push(sampleData[d])
 		});
 
-	// getStackedBarChart(result,attribute, year);
-
 	console.log("sampleData : ", sampleData)
 
     var selectedState = $('#stateID').val()
@@ -268,10 +266,6 @@ function draw_usa_map(data, attr, year){
 	$('#ratioSpanLabel').text(attr +" Ratio")
 
 	loadChloropethMap(testData, tooltipHtml,attr)
-	/* draw states on id #statesvg */
-	// uStates.draw("#statesvg", sampleData, tooltipHtml, attr);
-
-	// d3.select(self.frameElement).style("height", "600px");
 }
 
 

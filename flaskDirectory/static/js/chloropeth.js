@@ -48,23 +48,23 @@ d3.selection.prototype.moveToBack = function() {
 
 function ready(us, maptemplate, map, path, projection, toolTip, margin, width , height, attr, mapRatio) {
 
-    console.log(us, "maptemplate ",maptemplate);
+    console.log(us, "maptemplate ", maptemplate);
 
     // var lowColor = '#f9f9f9'
-    var lowColor="#ffffcc";
+    var lowColor = "#ffffcc";
     var highColor = "rgb(69, 173, 168)"
     // var highColor = '#bc2a66'
 
-  //Sets color scale
+    //Sets color scale
     var domain = []
-    domain = getDomainBasedOnAttribute(attr,domain,maptemplate)
+    domain = getDomainBasedOnAttribute(attr, domain, maptemplate)
 
     console.log("domain", domain)
 
     var extent = d3.extent(domain)
     console.log("extent", extent)
 
-	var ramp = d3.scale.linear().domain([extent[0],extent[1]]).range([lowColor,highColor])
+    var ramp = d3.scale.linear().domain([extent[0], extent[1]]).range([lowColor, highColor])
     var w = 140, h = 320;
 
     var key = d3.select(".g-chart")
@@ -74,134 +74,115 @@ function ready(us, maptemplate, map, path, projection, toolTip, margin, width , 
         .attr("class", "legends");
 
     var legend = key.append("defs")
-			.append("svg:linearGradient")
-			.attr("id", "gradient")
-			.attr("x1", "100%")
-			.attr("y1", "0%")
-			.attr("x2", "100%")
-			.attr("y2", "100%")
-			.attr("spreadMethod", "pad");
+        .append("svg:linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "100%")
+        .attr("y1", "0%")
+        .attr("x2", "100%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
 
-		legend.append("stop")
-			.attr("offset", "0%")
-			.attr("stop-color", highColor)
-			.attr("stop-opacity", 1);
+    legend.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", highColor)
+        .attr("stop-opacity", 1);
 
-		legend.append("stop")
-			.attr("offset", "100%")
-			.attr("stop-color", lowColor)
-			.attr("stop-opacity", 1);
+    legend.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", lowColor)
+        .attr("stop-opacity", 1);
 
-		key.append("rect")
-			.attr("width", w - 100)
-			.attr("height", h)
-			.style("fill", "url(#gradient)")
-			.attr("transform", "translate(0,10)");
+    key.append("rect")
+        .attr("width", w - 100)
+        .attr("height", h)
+        .style("fill", "url(#gradient)")
+        .attr("transform", "translate(0,10)");
 
-		var y = d3.scale.linear()
-			.range([h-14, 0])
-			.domain([extent[0],extent[1]]);
+    var y = d3.scale.linear()
+        .range([h - 14, 0])
+        .domain([extent[0], extent[1]]);
 
-		var yAxis = d3.svg.axis().scale(y).orient("right");
-		// d3.axis().right(y);
+    var yAxis = d3.svg.axis().scale(y).orient("right");
+    // d3.axis().right(y);
 
-		key.append("g")
-			.attr("class", "y axis")
-			.attr("transform", "translate(41,10)")
-			.call(yAxis)
-
-
-          //Pair data with state id
-          var dataByFIPS = {};
-		    dataByFIPS = getDataByFIPSBasedOnAttribute(attr, dataByFIPS,maptemplate)
-          // maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Ratio; });
-
-          var dataForTooltip={}
-          dataForTooltip = getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate)
-    var popByFips={}
-    maptemplate.forEach(function(d) { popByFips[d.Fips] = d.Population; });
-          //Pair state name with state id
-          var stateByFIPS = {};
-          maptemplate.forEach(function(d) { stateByFIPS[d.Fips] = d.State; });
-
-          //Appends chart headline
-          d3.select(".g-hed").text("US MAP based on "+ attr +" Ratio");
-          //Appends chart intro text
-          // d3.select(".g-intro").text("Map intro text goes here. Write a short sentence describing the map here.");
-          //Append states
+    key.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(41,10)")
+        .call(yAxis)
 
 
-  map.append("g")
-    .attr("class", "states")
-    .selectAll("path")
-    .data(topojson.feature(us, us.objects.states).features)
-    .enter().append("path")
-    .attr("d", path)
-    //Color states
-    .style("fill", function(d) { return ramp(dataByFIPS[d.id]) })
-    //Hovers
-    .on("mouseover", function(d) {
-        d3.select("#statetooltip").transition().duration(200).style("opacity", .9);
+    //Pair data with state id
+    var dataByFIPS = {};
+    dataByFIPS = getDataByFIPSBasedOnAttribute(attr, dataByFIPS, maptemplate)
+    // maptemplate.forEach(function(d) { dataByFIPS[d.Fips] = d.Ratio; });
 
-        d3.select("#statetooltip").html(toolTip(stateByFIPS[d.id], dataForTooltip[d.id], attr))
-            .style("left", (d3.event.pageX) + "px")
-            .style("top", (d3.event.pageY - 28) + "px")
-            .style("z-index",1);
+    var dataForTooltip = {}
+    dataForTooltip = getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate)
+    var popByFips = {}
+    maptemplate.forEach(function (d) {
+        popByFips[d.Fips] = d.Population;
+    });
+    //Pair state name with state id
+    var stateByFIPS = {};
+    maptemplate.forEach(function (d) {
+        stateByFIPS[d.Fips] = d.State;
+    });
 
-    })
-    .on("mouseout", function() {
-        d3.select("#statetooltip").transition().duration(500).style("opacity", 0);
-    })
-      .on("click",function(d){
-          console.log("d : ",d)
-          var state = stateByFIPS[d.id]
-          var data = dataByFIPS[d.id]
-            var pop  = popByFips[d.id]
-          $('#popSpan').text(fnum(pop))
-          $('#stateID').val(state)
-          $('#stateOrYear').text("State");
-        $('#yearSpan').text(state)
-        $('#ratioSpan').text(data)
-          console.log("clicked ", state)
-          d3.select(this).style("fill","brown")
-          queue()
-            .defer(d3.csv, "/getDataPerState?state=" + state)
-            .await(storeDataForAParticularState)
-
-      });
-  //Appends chart source
-  d3.select(".g-source-bold")
-    .text("SOURCE: ")
-    .attr("class", "g-source-bold");
-  d3.select(".g-source-reg")
-    .text("https://usa.ipums.org/usa/")
-    .attr("class", "g-source-reg");
+    //Appends chart headline
+    d3.select(".g-hed").text("US MAP based on " + attr + " Ratio");
 
 
-    //RESPONSIVENESS
-    // d3.select(window).on('resize', resize);
-// function resize() {
-//     var w = d3.select(".g-chart").node().clientWidth;
-//     console.log("resized", w);
-//     // adjust things when the window size changes
-//     width = w - margin.left - margin.right;
-//     height = width * mapRatio;
-//     console.log(width)
-//     // update projection
-//     var newProjection = d3.geo.albersUsa()
-//       .scale(width)
-//       .translate([width / 2, height / 2]);
-//     //Update path
-//     path = d3.geo.path()
-//       .projection(newProjection);
-//     // resize the map container
-//     map
-//         .style('width', width + 'px')
-//         .style('height', height + 'px');
-//     // resize the map
-//     map.selectAll("path").attr('d', path);
-// }
+    map.append("g")
+        .attr("class", "states")
+        .selectAll("path")
+        .data(topojson.feature(us, us.objects.states).features)
+        .enter().append("path")
+        .attr("d", path)
+        //Color states
+        .style("fill", function (d) {
+            return ramp(dataByFIPS[d.id])
+        })
+        //Hovers
+        .on("mouseover", function (d) {
+            d3.select("#statetooltip").transition().duration(200).style("opacity", .9);
+
+            d3.select("#statetooltip").html(toolTip(stateByFIPS[d.id], dataForTooltip[d.id], attr))
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px")
+                .style("z-index", 1);
+
+        })
+        .on("mouseout", function () {
+            d3.select("#statetooltip").transition().duration(500).style("opacity", 0);
+        })
+        .on("click", function (d) {
+            console.log("d : ", d)
+            var state = stateByFIPS[d.id]
+            var data = dataByFIPS[d.id]
+            var pop = popByFips[d.id]
+            $('#popSpan').text(fnum(pop))
+            $('#stateID').val(state)
+            $('#stateOrYear').text("State");
+            $('#yearSpan').text(state)
+            $('#ratioSpan').text(data)
+            console.log("clicked ", state)
+            d3.select(this).style("fill", "cornflowerblue")
+            queue()
+                .defer(d3.csv, "/getDataPerState?state=" + state)
+                .await(storeDataForAParticularState)
+
+        });
+    //Appends chart source
+    d3.select(".g-source-bold")
+        .text("SOURCE: ")
+        .attr("class", "g-source-bold");
+    d3.select(".g-source-reg")
+        .text("https://usa.ipums.org/usa/")
+        .attr("class", "g-source-reg");
+
+
 }
+
 function getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate){
     switch(attr){
         case "Sex": maptemplate.forEach(function(d) {
@@ -229,7 +210,6 @@ function getTooltipBasedOnAttribute(attr, dataForTooltip, maptemplate){
             return dataForTooltip
     }
 }
-
 
 function getDomainBasedOnAttribute(attr,domain, maptemplate){
     switch(attr){

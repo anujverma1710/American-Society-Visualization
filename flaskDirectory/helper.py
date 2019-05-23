@@ -66,22 +66,26 @@ data = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
 	"West Virginia","Wisconsin","Wyoming"
 	]
 
-
+#helper method for getting state data
 def getStateRow(state):
 	return  data.index(state)
 
+#getting data based on attribute
 def getDataFrame(filename):
 	dataframe = pd.read_csv('Dataset/'+filename)
 	return dataframe
 
+#getting data for a particular decade
 def getDataFrameBasedOnYear(filename):
 	dataframe = pd.read_csv('NayawalaDataset/'+filename)
 	return dataframe
 
+#data for entire 5 decades
 def getAggregateData():
 	dataframe = pd.read_csv('NayawalaDataset/Aggregate_Data.csv')
 	return dataframe
 
+#formatted data per attribute
 def getDataToSend(dataframe):
 	states = dataframe['STATE'].tolist()
 	dataframe['ID'] = [stateCode[i] for i in states]
@@ -90,6 +94,7 @@ def getDataToSend(dataframe):
 	data = pd.io.json.dumps(data)
 	return data
 
+#calculating p test
 def getStats(dataframe, attr1, attr2):
 	x = dataframe[attr1].tolist()
 	y = dataframe[attr2].tolist()

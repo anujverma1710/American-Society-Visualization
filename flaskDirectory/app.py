@@ -6,10 +6,13 @@ import json
 
 app = Flask(__name__)
 
+###Default route template
 @app.route("/")
 def index():
     return render_template('index.html')
 
+
+#Common method For Fetching data based on attribute
 @app.route("/display_plots")
 def display_plots():
     attr = request.args.get('attr', default='Sex', type=str)
@@ -24,6 +27,8 @@ def display_plots():
     data = helper.getDataToSend(df)
     return data
 
+
+##Method for getting data for entire 1 decade
 @app.route("/getDataPerYear")
 def getDataPerYear():
     year = request.args.get('year', default='1970', type=str)
@@ -47,10 +52,14 @@ def getDataPerYear():
     getStats()
     return df.to_csv()
 
+
+#For Getting aggregate data for all 5 decades
 @app.route("/getAggregateData")
 def getAggregateData():
     return helper.getAggregateData().to_csv()
 
+
+#For getting data on selection of state
 @app.route("/getDataPerState")
 def getDataPerState():
 
@@ -66,15 +75,13 @@ def getDataPerState():
 	df = df.reset_index(drop=True)
 	return df.to_csv()
 
+
+#for calculation of p-value
 @app.route("/getStats")
 def getStats():
     stat = helper.readFromFile('stats.txt')
     return json.dumps(stat)
-# @app.route("/Data1970")
-# def Data1970():
-#     filename = "Data" + "1970" + ".csv"
-#     df = helper.getDataFrameBasedOnYear(filename)
-#     return df.to_csv()
+
 
 if __name__ == "__main__":
 

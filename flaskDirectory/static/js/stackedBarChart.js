@@ -50,7 +50,6 @@ function getStackedBarChart(result, attribute) {
         .range([height, 0]);
     var colors = ["#b33040", "#d25c4d", "#f2b447", "#d9d574","#ffcccc"];
 
-    // var colors = d3.scale.category10();
 // Define and draw axes
     var yAxis = d3.svg.axis()
         .scale(y)
