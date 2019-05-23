@@ -1,10 +1,15 @@
 INTRODUCTION
+
+
 In this project, we aim to build a dashboard to visualize the change in American society and demographics over time and also, with the help of the visualization, analyse the effects of these changes on various other factors of the society to produce interesting, statistically significant results that can be used for better governance by giving a basic, high level view into the American society.
 
 DATASET
+
+
 For our data, we are mostly looking at the United States Census data. We have used the wonderful tool “The National Historical Geographic Information System (NHGIS)” which provides easy access to summary tables and time series of population, housing, agriculture, and economic data for years from 1790 through the present. Currently, our high level goal is to observe the effects of demographic changes on the society. NHGIS provides us with mostly economic data. We are also currently looking for other aspects, mainly health and education and plan to include them as well to study the effect of population on these variables. Our dataset is at a granularity level of state and county so we’ll not be able to analyze census tracts.
 
 STATEMENT OF NEED
+
 In our opinion, government policies should keep up with the times and always be open to change in keeping with the changing human societies and their needs and concerns. Society is constantly evolving and we want to develop a way to visualize this evolution through time so as to make it easier for policy makers to heed to the changing needs of their county, state and county.
 Our mission is to visualize the data in a way that pinpoints and brings forth the ways the demographic change affects the economics and other areas of the society and to show that these are important factors that need to be considered when designing policies and governance. But also, secondarily, we want to bring forth the idea that using regression and other statistical methods, future demographic data can be inferred and this data can use the same visualizations that we create to help those holding public offices to visualize in an intuitive way the needs of their community.
 
@@ -16,6 +21,8 @@ Note: From our analysis, we have excluded District of Columbia (DC), Hawaii and 
 
 
 REFERENCES
+
+
  - Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. IPUMS National Historical Geographic Information System: Version 13.0 [Database]. Minneapolis: University of Minnesota. 2018. http://doi.org/10.18128/D050.V13.0
  - Scatter Plot with Regression Line: https://bl.ocks.org/ctufts/298bfe4b11989960eeeecc9394e9f118
  - Connected ScatterPlot : http://bl.ocks.org/d3noob/38744a17f9c0141bcd04
