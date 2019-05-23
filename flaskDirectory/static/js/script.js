@@ -52,7 +52,7 @@ function get_map(url, attribute, year) {
     });
 
     queue()
-        .defer(d3.csv,"/getDataPerYear?year=" + year)
+        .defer(d3.csv,"/getDataPerYear?year=" + year + "&attr=" + attribute + "&profiler=" + $('#profiler').val())
 		.await(storeDataForEveryAttribute);
 }
 
